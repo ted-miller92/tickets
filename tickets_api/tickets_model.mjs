@@ -40,4 +40,18 @@ const getActiveTickets = async() => {
     return query.exec();
 }
 
-export {addTicket, getActiveTickets}
+// Toggle active status for a single ticket
+const toggleActiveStatus = async(id) => {
+    const query = Ticket.findById(id);
+    const ticket = await query.exec();
+
+    if (ticket.active) {
+        const result = Ticket.findByIdAndUpdate(id, {active: 'false'}, {new: true});
+        return result;
+    } else {
+        const result = Ticket.findByIdAndUpdate(id, {active: 'true'}, {new: true});
+        return result;
+    }
+}
+
+export {addTicket, getActiveTickets, toggleActiveStatus}

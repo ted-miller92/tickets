@@ -58,3 +58,6 @@ content-type: application/json
 GET http://localhost:3000/active_tickets HTTP/1.1
 content-type: application/json
 
+### Request 7: toggle active status
+PUT http://localhost:3000/tickets/toggle_active/64ae3ab2a10f0d6834e18731 HTTP/1.1
+content-type: application/json

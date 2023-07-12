@@ -31,7 +31,13 @@ app.post('/items', asyncHandler( async (req, res) => {
     const item = await items.addItem(req.body.item_name, req.body.price, req.body.sold_out);
 
     res.send(item);
-}))
+}));
+
+// toggle active status for one ticket
+app.put('/tickets/toggle_active/:_id', asyncHandler (async (req, res) => {
+    const result = await tickets.toggleActiveStatus(req.params._id);
+    res.send(result);
+}));
 
 
 app.listen(PORT, () => {
