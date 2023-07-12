@@ -15,6 +15,46 @@ content-type: application/json
 {
     "cust_name": "Ted",
     "date" : "2002-12-09",
-    "items" : ["Burger", "burger"],
+    "items" : [
+        {
+            "item_name" : "Burger",
+            "price" : 21.99,
+            "mods" : "No cheese"
+        },
+        {
+            "item_name" : "Pizza",
+            "price" : 24.99,
+            "mods" : "Add Pepperoni"
+        }
+    ],
     "active" : "true"
 }
+
+### Request 3
+
+
+POST http://localhost:3000/items HTTP/1.1
+content-type: application/json
+
+{
+    "item_name" : "Rosemary Chicken",
+    "price" : 26.99,
+    "sold_out" : false
+}
+
+### Request 4
+
+POST http://localhost:3000/items HTTP/1.1
+content-type: application/json
+
+{
+    "item_name" : "Beef Short Ribs",
+    "price" : 31.99,
+    "sold_out" : false
+}
+
+### Request 6: get active tickets
+
+GET http://localhost:3000/active_tickets HTTP/1.1
+content-type: application/json
+

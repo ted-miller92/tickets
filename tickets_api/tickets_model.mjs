@@ -12,7 +12,7 @@ mongoose.connect(
 const db = mongoose.connection;
 // The open event is called when the database connection successfully opens
 db.once("open", () => {
-    console.log("Successfully connected to MongoDB using Mongoose!");
+    console.log("Successfully connected to tickets using Mongoose!");
 });
 
 // Schema
@@ -34,4 +34,10 @@ const addTicket = async (cust_name, date, items, active) => {
     return ticket.save();
 }
 
-export {addTicket}
+// Retrieve active tickets
+const getActiveTickets = async() => {
+    const query = Ticket.find({"active" : true});
+    return query.exec();
+}
+
+export {addTicket, getActiveTickets}
