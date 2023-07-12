@@ -1,0 +1,20 @@
+POST http://localhost:3000/tickets HTTP/1.1
+content-type: application/json
+
+{
+    "cust_name": "Ted",
+    "date" : "2002-12-09",
+    "items" : "[]"
+}
+
+### Request 2
+
+POST http://localhost:3000/tickets HTTP/1.1
+content-type: application/json
+
+{
+    "cust_name": "Ted",
+    "date" : "2002-12-09",
+    "items" : ["Burger", "burger"],
+    "active" : "true"
+}
