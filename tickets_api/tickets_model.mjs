@@ -16,9 +16,12 @@ db.once("open", () => {
 });
 
 // Schema
+// The items field in the ticket will be an array of item ids, 
+// to be rendered in one of the views
 const ticketSchema = mongoose.Schema({
     cust_name : {type: String, required: true},
-    date : {type: Date, required: true},
+    date : {type: String, required: true},
+    time: {type: String, required: true},
     items : {type: Array, required: true},
     active: {type: Boolean, required: true}
 });
@@ -27,11 +30,21 @@ const ticketSchema = mongoose.Schema({
 const Ticket = mongoose.model("Ticket", ticketSchema);
 
 // Create
-const addTicket = async (cust_name, date, items, active) => {
+const addTicket = async (cust_name, date, time, items, active) => {
+
     const ticket = new Ticket({cust_name: cust_name, 
-        date: date, items: items, active: active});
+        date: date,
+        time: time,  
+        items: items, 
+        active: active});
 
     return ticket.save();
+}
+
+// Retrieve all tickets (regardless of active status)
+const getAllTickets = async() => {
+    const query = Ticket.find();
+    return query.exec();
 }
 
 // Retrieve active tickets
@@ -54,4 +67,10 @@ const toggleActiveStatus = async(id) => {
     }
 }
 
-export {addTicket, getActiveTickets, toggleActiveStatus}
+// Update items in a ticket
+const updateTicketItems = async(id, updates) => {
+    const result = Ticket.findByIdAndUpdate(id, updates, {new: true});
+    return result;
+}
+
+export {addTicket, getAllTickets, getActiveTickets, toggleActiveStatus, updateTicketItems}

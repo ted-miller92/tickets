@@ -14,7 +14,6 @@ content-type: application/json
 
 {
     "cust_name": "Ted",
-    "date" : "2002-12-09",
     "items" : [
         {
             "item_name" : "Burger",
@@ -53,11 +52,48 @@ content-type: application/json
     "sold_out" : false
 }
 
+### Request 4.1 (item is sold out)
+POST http://localhost:3000/items HTTP/1.1
+content-type: application/json
+
+{
+    "item_name" : "Chicken Picatta",
+    "price" : 29.99,
+    "sold_out": true
+}
+
+### Request 5: get all tickets regardless of active status
+GET http://localhost:3000/tickets HTTP/1.1
+content-type: application/json
+
 ### Request 6: get active tickets
 
 GET http://localhost:3000/active_tickets HTTP/1.1
 content-type: application/json
 
 ### Request 7: toggle active status
-PUT http://localhost:3000/tickets/toggle_active/64ae3ab2a10f0d6834e18731 HTTP/1.1
+PUT http://localhost:3000/tickets/toggle_active/64aef950f22f446e2dd508ba HTTP/1.1
+content-type: application/json
+
+### Request 8: update items in a ticket
+PUT http://localhost:3000/tickets/64ae3ab2a10f0d6834e18731 HTTP/1.1
+content-type: application/json
+
+{
+    "items" : [
+        "64aee83c8a79af4d1b4caf4e",
+        "64aee8628a79af4d1b4caf50"
+    ]
+}
+
+### Request 9: get all items (regardless of sold out status)
+GET http://localhost:3000/items HTTP/1.1
+content-type: application/json
+
+### Request 9.1: get all available items
+GET http://localhost:3000/available_items HTTP/1.1
+content-type: application/json
+
+### Request 10: toggle sold out status given an item id
+PUT http://localhost:3000/items/toggle_sold_out/64af16110049a286a505baca HTTP/1.1
 content-type: application/json

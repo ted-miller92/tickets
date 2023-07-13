@@ -16,3 +16,14 @@ cd tickets_ui
 npm install
 npm start
 ```
+
+## MongoDB set up
+
+Create a database and cluster on mongodb. 
+
+Create a .env file in the `tickets_api` directory and fill it with the following:
+```
+PORT=3000
+MONGODB_CONNECT_STRING=connection string here!
+```
+Use MongoDB's connection string, replace `username` and `password` with the username and password of your mongodb user.

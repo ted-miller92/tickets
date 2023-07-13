@@ -32,22 +32,42 @@ const addItem = async (item_name, price, sold_out) => {
     return item.save();
 }
 
-// Retrieve all
+// Retrieve all items
 const getAllItems = async() => {
     const query = Item.find();
     return query.exec();
 }
 
-// Retrieve one
+// Retrieve all items that are NOT sold out
+const getAvailableItems = async() => {
+    const query = Item.find({"sold_out": false});
+    return query.exec();
+}
+
+// Retrieve one item
 const getOneItem = async(id) => {
     const query = Item.findById(id);
     return query.exec();
 }
 
-// Update one
+// Update one item
 const updateItem = async(id, updates) => {
     const result = Item.findByIdAndUpdate(id, updates, {new: true});
     return result;
+}
+
+// Toggle sold out status
+const toggleSoldOutStatus = async(id) => {
+    const query = Item.findById(id);
+    const item = await query.exec();
+
+    if (item.sold_out) {
+        const result = Item.findByIdAndUpdate(id, {sold_out: 'false'}, {new: true});
+        return result;
+    } else {
+        const result = Item.findByIdAndUpdate(id, {sold_out: 'true'}, {new: true});
+        return result;
+    }
 }
 
 // Delete item
@@ -56,4 +76,5 @@ const deleteItem = async(id) => {
     return result;
 }
 
-export {addItem, getAllItems, getOneItem, updateItem, deleteItem}
+export {addItem, getAllItems, getAvailableItems, getOneItem, 
+    updateItem, toggleSoldOutStatus, deleteItem}
