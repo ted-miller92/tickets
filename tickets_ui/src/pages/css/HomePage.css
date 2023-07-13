@@ -1,0 +1,20 @@
+.links{
+    max-width:fit-content;
+    margin: auto;
+}
+
+.link{
+    display: block;
+    color: white;
+    background-color: #339;
+    font-size:35px;
+    text-decoration: none;
+    padding: 35px;
+    margin: 110px;
+    border-radius:100px;
+    box-shadow: 2px 2px 2px #114;
+}
+
+.link:hover{
+    background-color: #33B;
+}

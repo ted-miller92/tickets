@@ -7,7 +7,7 @@ content-type: application/json
     "items" : "[]"
 }
 
-### Request 2
+### Request 2 create a ticket
 
 POST http://localhost:3000/tickets HTTP/1.1
 content-type: application/json
@@ -28,6 +28,91 @@ content-type: application/json
     ],
     "active" : "true"
 }
+
+### Request 2.1: create many tickets
+POST http://localhost:3000/tickets HTTP/1.1
+content-type: application/json
+
+{
+    "cust_name": "Lauren",
+    "items" : [
+        {
+            "item_name" : "Rosemary Chicken",
+            "price" : 21.99,
+            "mods" : "Extra Broccoli"
+        }
+    ],
+    "active" : "true"
+}
+
+### 
+POST http://localhost:3000/tickets HTTP/1.1
+content-type: application/json
+
+{
+    "cust_name" : "Geraldine",
+    "items" : [
+        {
+            "item_name" :"Seed and Worm Plate",
+            "price" : 2.99,
+            "mods" : ""
+        }
+    ],
+    "active": "true"
+}
+
+### 
+POST http://localhost:3000/tickets HTTP/1.1
+content-type: application/json
+
+{
+    "cust_name" : "Rosie",
+    "items" : [
+        {
+            "item_name" :"Kibbles",
+            "price" : 4.99,
+            "mods" : "Extra Chicken"
+        }
+    ],
+    "active": "true"
+}
+
+### 
+POST http://localhost:3000/tickets HTTP/1.1
+content-type: application/json
+
+{
+    "cust_name" : "Big Table",
+    "items" : [
+        {
+            "item_name" :"Kibbles",
+            "price" : 4.99,
+            "mods" : "Extra Chicken"
+        },
+        {
+            "item_name" :"Seed and Worm Plate",
+            "price" : 2.99,
+            "mods" : ""
+        },
+        {
+            "item_name" : "Rosemary Chicken",
+            "price" : 21.99,
+            "mods" : "Extra Broccoli"
+        },
+        {
+            "item_name" : "Burger",
+            "price" : 21.99,
+            "mods" : "No cheese"
+        },
+        {
+            "item_name" : "Pizza",
+            "price" : 24.99,
+            "mods" : "Add Pepperoni"
+        }
+    ],
+    "active": "true"
+}
+
 
 ### Request 3
 

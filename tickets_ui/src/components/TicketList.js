@@ -1,12 +1,13 @@
 import React from 'react';
-import Ticket from './Ticket'
+import Ticket from './Ticket';
+import './css/TicketList.css';
 
 function TicketList({tickets}) {
     return (
-        <ul>
+        <div className="horizontalScrollMenu">
             {tickets.map((ticket, i) => <Ticket ticket={ticket}
             key={i} />)}
-        </ul>
+        </div>
     )
 }
 

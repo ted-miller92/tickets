@@ -1,5 +1,6 @@
 import React from 'react';
 import ItemSmallView from './ItemSmallView.js';
+import './css/TicketItems.css';
 
 function TicketItems( {ticket}) {
     console.log(ticket);
@@ -7,9 +8,9 @@ function TicketItems( {ticket}) {
     console.log(items);
 
     return (
-        <ul>
+        <ol>
             {items.map((item, i) => <ItemSmallView item={item} key={i} />)}
-        </ul>
+        </ol>
     );
 }
 

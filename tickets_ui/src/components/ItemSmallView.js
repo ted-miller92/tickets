@@ -1,11 +1,17 @@
 import React from 'react';
+import './css/ItemSmallView.css'
 
 function ItemSmallView(item) {
+    
+
     return (
-        <div>
+        <li>
             {item.item.item_name}
-            {item.item.mods}
-        </div>
+            <ul>
+                <p className="mod">{item.item.mods}</p>
+            </ul>
+            
+        </li>
     )
 }
 
