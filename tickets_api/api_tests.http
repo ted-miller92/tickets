@@ -157,7 +157,7 @@ GET http://localhost:3000/active_tickets HTTP/1.1
 content-type: application/json
 
 ### Request 7: toggle active status
-PUT http://localhost:3000/tickets/toggle_active/64aef950f22f446e2dd508ba HTTP/1.1
+PUT http://localhost:3000/tickets/toggle_active/64b0861993533e625fa1ed8f HTTP/1.1
 content-type: application/json
 
 ### Request 8: update items in a ticket
@@ -180,5 +180,5 @@ GET http://localhost:3000/available_items HTTP/1.1
 content-type: application/json
 
 ### Request 10: toggle sold out status given an item id
-PUT http://localhost:3000/items/toggle_sold_out/64af16110049a286a505baca HTTP/1.1
+PUT http://localhost:3000/items/toggle_sold_out/64b0861993533e625fa1ed8f HTTP/1.1
 content-type: application/json

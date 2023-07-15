@@ -2,7 +2,7 @@ import React from 'react';
 import TicketItems from './TicketItems';
 import './css/Ticket.css';
 
-function Ticket ({ticket}){
+function Ticket ({ticket, onComplete}){
     const ticket_class = ticket.active == true ? "active" : "inactive";
 
     return (
@@ -14,7 +14,7 @@ function Ticket ({ticket}){
             
             <TicketItems ticket={ticket} />
 
-            <button>Mark Complete</button>
+            <button onClick= {() => onComplete(ticket._id)}>Mark Complete</button>
         </div>
     );
 }

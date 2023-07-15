@@ -14,11 +14,14 @@ function HomePage() {
     const navigate = useNavigate();
 
     return (
-        <div className="links">
-            <Link className="link" id="ticketsViewLink" to="/tickets">Tickets</Link>
-            <Link className="link" id="itemsViewLink" to="/items">Items</Link>
-            <Link className="link" id="newTicketLink" to="/new_ticket">New Ticket</Link>
-        </div>
+        <>
+            <h1>Tickets Home</h1>
+            <div className="links">
+                <Link className="link" id="ticketsViewLink" to="/tickets">Tickets</Link>
+                <Link className="link" id="itemsViewLink" to="/items">Items</Link>
+                <Link className="link" id="newTicketLink" to="/new_ticket">New Ticket</Link>
+            </div>
+        </>
     );
 }
 

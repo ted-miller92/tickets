@@ -9,15 +9,15 @@ import Items from './pages/Items';
 import Navigation from './components/Navigation';
 
 function App() {
+	
+
 	return (
 		<div className="App">
 			<Router>
-				<Navigation />
 				<Routes>
 					<Route path="/" element={<HomePage/>}	/>
 					<Route path="/tickets" element={<Tickets/>}	/>
 					<Route path="/items" element={<Items/>}	/>
-					
 				</Routes>
 			</Router>
 		</div>
