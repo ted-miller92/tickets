@@ -11,11 +11,7 @@ function ItemGridElement(item) {
         
             <h3>{item.item.item_name}</h3>
             <h1 className="warning">{sold_out_msg}</h1>
-            <ul>
-                <li>{item.item.price}</li>
-                
-            </ul>
-            
+            <p>{item.item.price}</p>    
         </div>
     )
 }

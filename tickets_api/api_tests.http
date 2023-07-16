@@ -157,7 +157,7 @@ GET http://localhost:3000/active_tickets HTTP/1.1
 content-type: application/json
 
 ### Request 7: toggle active status
-PUT http://localhost:3000/tickets/toggle_active/64b0861993533e625fa1ed8f HTTP/1.1
+PUT http://localhost:3000/tickets/toggle_active/64b0845a93533e625fa1ed69 HTTP/1.1
 content-type: application/json
 
 ### Request 8: update items in a ticket

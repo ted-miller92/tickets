@@ -12,7 +12,6 @@ function Items() {
         const response = await fetch('/items');
         const data = await response.json();
         setItems(data);
-
     }
 
     useEffect(() => {

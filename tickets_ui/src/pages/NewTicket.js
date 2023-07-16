@@ -65,12 +65,14 @@ function NewTicket() {
 
                 <button onClick={() => setIsOpen(true)}>Add Item to Ticket</button>
 
-                {isOpen && <AddItemToTicket setIsOpen={setIsOpen} />}
+                {isOpen && <AddItemToTicket 
+                    setIsOpen={setIsOpen} 
+                    items={items}
+                    ticket_items={ticket_items}
+                    />}
                 
-                <button>Send Ticket</button>
+                <button >Send Ticket</button>
             
-            
-            {/* <ItemsGridView  items={items}/> */}
         </div>
     )
 }
