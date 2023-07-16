@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 
 // create a new ticket
-app.post('/tickets', asyncHandler( async (req, res) => {
+app.post('/tickets', asyncHandler(async (req, res) => {
     const current_date = new Date();
     const date_string = current_date.toDateString()
     const time_string = current_date.toLocaleTimeString();

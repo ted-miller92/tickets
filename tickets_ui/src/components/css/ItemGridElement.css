@@ -1,0 +1,13 @@
+.itemGridElement{
+    padding:20px;
+    margin:8px;
+    background-color: gainsboro;
+}
+
+.soldOut{
+    color: #999;
+}
+
+.warning{
+    color: red;
+}

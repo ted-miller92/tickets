@@ -5,6 +5,7 @@ import './App.css';
 import HomePage from './pages/HomePage';
 import Tickets from './pages/Tickets';
 import Items from './pages/Items';
+import NewTicket from './pages/NewTicket';
 
 import Navigation from './components/Navigation';
 
@@ -18,6 +19,7 @@ function App() {
 					<Route path="/" element={<HomePage/>}	/>
 					<Route path="/tickets" element={<Tickets/>}	/>
 					<Route path="/items" element={<Items/>}	/>
+					<Route path="/new_ticket" element={<NewTicket/>} />
 				</Routes>
 			</Router>
 		</div>
