@@ -21,7 +21,7 @@ app.post('/tickets', asyncHandler(async (req, res) => {
     const ticket = await tickets.addTicket(req.body.cust_name, 
         date_string, time_string, req.body.items, req.body.active);
 
-    res.send(ticket);
+    res.status(201).send(ticket);
 }));
 
 // retrieve all tickets regardless of active status
