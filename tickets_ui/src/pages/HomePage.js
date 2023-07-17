@@ -16,10 +16,27 @@ function HomePage() {
     return (
         <>
             <h1>Tickets Home</h1>
-            <div className="links">
-                <Link className="link" id="ticketsViewLink" to="/tickets">Tickets</Link>
-                <Link className="link" id="itemsViewLink" to="/items">Items</Link>
-                <Link className="link" id="newTicketLink" to="/new_ticket">New Ticket</Link>
+            <div className="bigLinks">
+                <Link className="bigLink" id="ticketsViewLink" to="/tickets">
+                    <h2>Tickets</h2>
+                    <p>See all current tickets</p>
+                </Link>
+
+                <Link className="bigLink" id="itemsViewLink" to="/items">
+                    <h2>Items</h2>
+                    <p>View, edit, add or delete menu items</p>
+                </Link>
+
+                <Link className="bigLink" id="newTicketLink" to="/new_ticket">
+                    <h2>New Ticket</h2>
+                    <p>Create a new ticket</p>
+                </Link>
+
+                <Link className="bigLink" id="newItemLink" to="/new_item">
+                    <h2>New Item</h2>
+                    <p>Create a new menu item</p>
+                </Link>
+                
             </div>
         </>
     );

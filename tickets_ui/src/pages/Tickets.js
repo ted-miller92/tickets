@@ -36,8 +36,7 @@ function Tickets( {setTicketToComplete} ) {
 
     return (
         <div>
-            <Navigation />
-            <h2>Tickets</h2>
+            <h1>Tickets</h1>
             <TicketList
                 tickets={tickets}
                 onComplete={onComplete}>

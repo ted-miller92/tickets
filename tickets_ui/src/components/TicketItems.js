@@ -1,5 +1,5 @@
 import React from 'react';
-import ItemSmallView from './ItemSmallView.js';
+import ItemOnTicket from './ItemOnTicket';
 import './css/TicketItems.css';
 
 function TicketItems( {ticket}) {
@@ -9,7 +9,7 @@ function TicketItems( {ticket}) {
 
     return (
         <ol>
-            {items.map((item, i) => <ItemSmallView item={item} key={i} />)}
+            {items.map((item, i) => <ItemOnTicket item={item} key={i} />)}
         </ol>
     );
 }

@@ -49,10 +49,9 @@ function NewTicket() {
     }
     
     return (
-        <div>
-            <Navigation />  
+        <>
             <h1>New Ticket</h1>
-            
+            <div className="formWrapper">
                 <label for="cust_name">Customer Name </label>
                 <input 
                     type="text" 
@@ -60,7 +59,6 @@ function NewTicket() {
                     id="cust_name" 
                     onChange={e =>setCustName(e.target.value)}
                     />
-                
                 <br/>
 
                 <button onClick={() => setIsOpen(true)}>Add Item to Ticket</button>
@@ -70,10 +68,10 @@ function NewTicket() {
                     items={items}
                     ticket_items={ticket_items}
                     />}
-                
+
                 <button >Send Ticket</button>
-            
-        </div>
+            </div>
+        </>
     )
 }
 

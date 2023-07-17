@@ -1,0 +1,22 @@
+nav{
+    background-color: #DDE;
+    margin: auto;
+    display: flex;
+}
+
+.navLink{
+    color:#339;
+    text-decoration: none;
+    font-size: 25px;
+    padding: 15px;
+    margin: 0px 85px 0px 0px;
+}
+.navLink:hover{
+    background-color: #CCD;
+    color:white;
+}
+
+.navLink:visited{
+    color:#339;
+    text-decoration: none;
+}

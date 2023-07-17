@@ -7,7 +7,7 @@ function ItemGridElement(item) {
     const sold_out_msg = item.item.sold_out? "Sold Out" : "";
 
     return (
-        <div className={`itemGridElement ${item_sold_out}`}>
+        <div className={`bigLink ${item_sold_out}`}>
         
             <h3>{item.item.item_name}</h3>
             <h1 className="warning">{sold_out_msg}</h1>

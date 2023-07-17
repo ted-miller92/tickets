@@ -1,7 +1,7 @@
 import React from 'react';
 import './css/ItemSmallView.css'
 
-function ItemSmallView(item) {
+function ItemOnTicket(item) {
     return (
         <li>
             {item.item.item_name}
@@ -13,4 +13,4 @@ function ItemSmallView(item) {
     )
 }
 
-export default ItemSmallView;
+export default ItemOnTicket;
