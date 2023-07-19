@@ -27,3 +27,7 @@ PORT=3000
 MONGODB_CONNECT_STRING=connection string here!
 ```
 Use MongoDB's connection string, replace `username` and `password` with the username and password of your mongodb user.
+
+The API is set up to automatically create a named collection in the database when you use it to "create" a ticket or item. 
+
+In the tickets_api folder, there is a api_tests.http which you can use with postman or the vscode extension "REST Client" to quickly make http requests to the API while it is running. Just make sure at that point the database is up and the API can talk to it with the correct "connect string"
