@@ -24,7 +24,7 @@ function Tickets( {setTicketToComplete} ) {
     }   
 
     const loadTickets = async () => {
-        const response = await fetch('/active_tickets');
+        const response = await fetch('/api/active_tickets');
         const data = await response.json();
         setTickets(data);
     }

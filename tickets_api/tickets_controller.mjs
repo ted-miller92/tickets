@@ -3,6 +3,7 @@ import * as tickets from './tickets_model.mjs';
 import * as items from './items_model.mjs';
 import express from 'express';
 import asyncHandler from 'express-async-handler';
+import cors from 'cors';
 // import { body, check, validationResult } from 'express-validator';
 // import { isDateValid } from './validation/date_validation.mjs';
 
@@ -25,13 +26,13 @@ app.post('/tickets', asyncHandler(async (req, res) => {
 }));
 
 // retrieve all tickets regardless of active status
-app.get('/tickets', asyncHandler (async (req, res) => {
+app.get('/api/tickets', asyncHandler (async (req, res) => {
     const result = await tickets.getAllTickets();
     res.send(result);
 }));
 
 // retrieve only active tickets
-app.get('/active_tickets', asyncHandler (async (req, res) => {
+app.get('/api/active_tickets', asyncHandler (async (req, res) => {
     const result = await tickets.getActiveTickets();
     res.send(result);
 }));
@@ -51,19 +52,19 @@ app.put('/tickets/:_id', asyncHandler (async (req, res) => {
 }));
 
 // create a new item
-app.post('/items', asyncHandler( async (req, res) => {
+app.post('/api/items', asyncHandler( async (req, res) => {
     const item = await items.addItem(req.body.item_name, req.body.price, req.body.sold_out);
     res.send(item);
 }));
 
 // get all items
-app.get('/items', asyncHandler (async (req, res) => {
+app.get('/api/items', asyncHandler (async (req, res) => {
     const result = await items.getAllItems();
     res.send(result);
 }));
 
 // get all available items
-app.get('/available_items', asyncHandler (async (req, res) => {
+app.get('/api/available_items', asyncHandler (async (req, res) => {
     const result = await items.getAvailableItems();
     res.send(result);
 }));

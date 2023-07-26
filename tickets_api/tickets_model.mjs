@@ -23,6 +23,7 @@ const ticketSchema = mongoose.Schema({
     date : {type: String, required: true},
     time: {type: String, required: true},
     items : {type: Array, required: true},
+    promo_code: {type: String, required: false},
     active: {type: Boolean, required: true}
 });
 
@@ -30,12 +31,13 @@ const ticketSchema = mongoose.Schema({
 const Ticket = mongoose.model("Ticket", ticketSchema);
 
 // Create
-const addTicket = async (cust_name, date, time, items, active) => {
+const addTicket = async (cust_name, date, time, items, promo_code, active) => {
 
     const ticket = new Ticket({cust_name: cust_name, 
         date: date,
         time: time,  
-        items: items, 
+        items: items,
+        promo_code: promo_code, 
         active: active});
 
     return ticket.save();

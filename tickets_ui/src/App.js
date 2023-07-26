@@ -11,8 +11,6 @@ import NewItem from './pages/NewItem';
 import Navigation from './components/Navigation';
 
 function App() {
-	
-
 	return (
 		<div className="App">
 			<Router>
