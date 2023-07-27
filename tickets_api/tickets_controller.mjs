@@ -14,13 +14,13 @@ const app = express();
 app.use(express.json());
 
 // create a new ticket
-app.post('/tickets', asyncHandler(async (req, res) => {
+app.post('/api/tickets', asyncHandler(async (req, res) => {
     const current_date = new Date();
     const date_string = current_date.toDateString()
     const time_string = current_date.toLocaleTimeString();
 
     const ticket = await tickets.addTicket(req.body.cust_name, 
-        date_string, time_string, req.body.items, req.body.active);
+        date_string, time_string, req.body.items, req.body.promo_code, req.body.active);
 
     res.status(201).send(ticket);
 }));
@@ -38,7 +38,7 @@ app.get('/api/active_tickets', asyncHandler (async (req, res) => {
 }));
 
 // toggle active status for one ticket
-app.put('/tickets/toggle_active/:_id', asyncHandler (async (req, res) => {
+app.put('/api/tickets/toggle_active/:_id', asyncHandler (async (req, res) => {
     const result = await tickets.toggleActiveStatus(req.params._id);
     res.send(result);
 }));

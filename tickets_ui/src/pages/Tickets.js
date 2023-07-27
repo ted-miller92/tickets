@@ -12,7 +12,7 @@ function Tickets( {setTicketToComplete} ) {
     const [tickets, setTickets] = useState([]);
 
     const onComplete = async _id => {
-        const response = await fetch(`/tickets/toggle_active/${_id}`, {method: 'PUT'});
+        const response = await fetch(`/api/tickets/toggle_active/${_id}`, {method: 'PUT'});
         
         if (response.status == 200) {
             const newTickets = tickets.filter(e => e._id !== _id);
@@ -33,6 +33,8 @@ function Tickets( {setTicketToComplete} ) {
     useEffect(() => {
         loadTickets()
     }, []);
+
+    console.log(tickets);
 
     return (
         <div>

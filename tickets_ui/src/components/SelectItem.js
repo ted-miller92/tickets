@@ -10,7 +10,7 @@ function SelectItem() {
     const [item, setItem] = useState();
 
     const loadItems = async () => {
-        const response = await fetch('/items');
+        const response = await fetch('/api/items');
         const data = await response.json();
         setItems(data);
     }

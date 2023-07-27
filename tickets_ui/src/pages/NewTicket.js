@@ -5,16 +5,20 @@ import Navigation from '../components/Navigation';
 import ItemsGridView from "../components/ItemsGridView";
 import { useNavigate } from "react-router-dom";
 import AddItemToTicket from "../components/AddItemToTicket";
+import TicketItems from "../components/TicketItems";
 
 function NewTicket() {
 
     const navigate = useNavigate();
     
     const [items, setItems] = useState([]);
+
     const [cust_name, setCustName] = useState();
-    const [ticket_items, setTicketItems] = useState();
+    const [ticket_items, setTicketItems] = useState([]);
     const [promo_code, setPromoCode] = useState();
-    const [active, setActive] = useState();
+    const [active, setActive] = useState(true);
+
+    const validated_code = "";
     
     const [isOpen, setIsOpen] = useState(false);
 
@@ -28,16 +32,27 @@ function NewTicket() {
         loadItems();
     }, []);
 
+
     const promoCodeValidation = async() => {
         const response = await fetch(`/promo_code/code?code=${promo_code}`, {
             method: "GET"
         })
         const result = await response.text()
-        console.log(result);
+
+        if (result == "Valid") {
+            console.log("Code will be applied")
+            validated_code = promo_code
+        } else {
+            console.log(result);    
+        }
     }
 
     const createTicket = async () => {
-        const newTicket = {cust_name, ticket_items, active, promo_code};
+        const newTicket = {cust_name, ticket_items, active, validated_code};
+
+        console.log(`ticket_items: ${ticket_items}`);
+
+        setActive(true);
 
         const response = await fetch('/api/tickets', {
             method: "POST",
@@ -61,36 +76,44 @@ function NewTicket() {
         <>
             <h1>New Ticket</h1>
             <div className="formWrapper">
-                <label for="cust_name">Customer Name </label>
-                <input 
-                    type="text" 
-                    name="cust_name" 
-                    id="cust_name" 
-                    onChange={e => setCustName(e.target.value)}
-                    />
-                <br/>
+                <form method="POST" action="/api/tickets">
+                    <label for="cust_name">Customer Name </label>
+                    <input 
+                        type="text" 
+                        name="cust_name" 
+                        id="cust_name" 
+                        onChange={e => setCustName(e.target.value)}
+                        />
+                    <br/>
 
-                <button onClick={() => setIsOpen(true)}>Add Item to Ticket</button>
+                    <button type="button" onClick={() => setIsOpen(true)}>Add Item to Ticket</button>
 
-                {isOpen && <AddItemToTicket 
-                    setIsOpen={setIsOpen} 
-                    items={items}
-                    ticket_items={ticket_items}
-                    />}
+                    {isOpen && <AddItemToTicket 
+                        setIsOpen={setIsOpen} 
+                        items={items}
+                        ticket_items={ticket_items}
+                        />}
 
-                <label for="promo_code">Promo Code: </label>
-                <input
-                    type="text"
-                    name="promo_code"
-                    id="promo_code"
-                    onChange={e => setPromoCode(e.target.value)}
-                    />
+                    <label for="promo_code">Promo Code: </label>
+                    <input
+                        type="text"
+                        name="promo_code"
+                        id="promo_code"
+                        onChange={e => setPromoCode(e.target.value)}
+                        />
 
-                <button onClick = {() => promoCodeValidation(promo_code)}>Check Promo Code</button>
+                    <button type="button" onClick = {() => promoCodeValidation(promo_code)}>Check Promo Code</button>
+                    
+                    <p>Current Items:</p>
+                    {ticket_items.map((item, i) => 
+                        <p>{item.item_name}, {item.mods}, {item.price}</p>
+                    )}
 
+                    <button>Save for Later</button>
+                    
 
-                <button>Save for Later</button>
-                <button onClick = {() => createTicket()}>Send Ticket</button>
+                    <button type="button" onClick = {() => createTicket()}>Send Ticket</button>
+                </form>
             </div>
         </>
     )
