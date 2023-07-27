@@ -29,10 +29,9 @@ function NewTicket() {
     }, []);
 
     const promoCodeValidation = async() => {
-        const response = await fetch(`promo_code/code?code=${promo_code}`, {
+        const response = await fetch(`/promo_code/code?code=${promo_code}`, {
             method: "GET"
         })
-        
         const result = await response.text()
         console.log(result);
     }
