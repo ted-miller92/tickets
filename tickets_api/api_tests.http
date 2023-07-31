@@ -113,6 +113,28 @@ content-type: application/json
     "active": "true"
 }
 
+###
+POST http://localhost:3000/api/tickets HTTP/1.1
+content-type: application/json
+
+{
+    "cust_name": "Code User",
+    "items" : [
+        {
+            "item_name" : "Rosemary Chicken",
+            "price" : 21.99,
+            "mods" : "Extra Broccoli"
+        },
+        {
+            "item_name" : "Burger",
+            "price" : 21.99,
+            "mods" : "No cheese"
+        }
+    ],
+    "active": "true",
+    "promo_code": "FCI9F566KQ"
+}
+
 
 ### Request 3
 
@@ -181,4 +203,8 @@ content-type: application/json
 
 ### Request 10: toggle sold out status given an item id
 PUT http://localhost:3000/items/toggle_sold_out/64b0861993533e625fa1ed8f HTTP/1.1
+content-type: application/json
+
+### Request 11: Test microservice
+GET http://localhost:3000/api/tickets?code=FCI9F566KQ HTTP/1.1
 content-type: application/json

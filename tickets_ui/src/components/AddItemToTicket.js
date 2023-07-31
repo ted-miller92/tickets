@@ -2,26 +2,14 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import "./css/AddItemToTicket.css"
 
-function AddItemToTicket({setIsOpen, items, ticket_items}) {
+function AddItemToTicket({setIsOpen, items, ticket_items, setTicketItems}) {
     
-    const [selectedItem, setSelectedItem] = useState();
-    const [itemName, setItemName] = useState();
+    const [selectedItem, setSelectedItem] = useState('');
+
+    const [price, setPrice] = useState();
 
     const item = useState();
     const [mods, setMods] = useState();
-
-
-    const addItemToTicket = async () => {
-        // set attributes of item to add
-        item.item_name = selectedItem.item_name;
-        item.price = selectedItem.price;
-        item.mods = mods;
-        console.log({item});
-        // push to ticket items array
-        ticket_items.push({item});
-        console.log(ticket_items);
-        setIsOpen(false);
-    }
     
     return (
         <>
@@ -33,9 +21,10 @@ function AddItemToTicket({setIsOpen, items, ticket_items}) {
                 <label for="selectedItem">Choose an item: </label>
                 <select
                     name="selectedItem"
-                    value={itemName}
-                    onChange={e => setSelectedItem(JSON.parse(e.target.value))}
+                    value={selectedItem}
+                    onChange={e => setSelectedItem(e.target.value)}
                 >
+                    <option>Select an Item</option>
                     {items.map((item, i) => 
                     <option
                         key={i}
@@ -55,8 +44,21 @@ function AddItemToTicket({setIsOpen, items, ticket_items}) {
                 >
 
                 </textarea>
-                <button onClick={addItemToTicket}>Add To Ticket</button>
-                <button onClick={() => setIsOpen(false)}>Cancel</button>
+                <button type="button" onClick={() => setTicketItems(
+                    [                    
+                    ...ticket_items,
+                    {
+                        item_name: selectedItem.item_name,
+                        price: selectedItem.price,
+                        mods: mods
+                    }
+                ],
+                
+                setIsOpen(false)
+                
+
+                )}>Add To Ticket</button>
+                <button type="button" onClick={() => setIsOpen(false)}>Cancel</button>
             </div>
         </div>
         <div className="modalOverlay"></div>

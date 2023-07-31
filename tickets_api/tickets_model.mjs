@@ -75,4 +75,12 @@ const updateTicketItems = async(id, updates) => {
     return result;
 }
 
-export {addTicket, getAllTickets, getActiveTickets, toggleActiveStatus, updateTicketItems}
+// Micro service handling
+// count all tickets that have used a particular promo code
+const promoCodeCount = async(code) => {
+    console.log(code);
+    const result = Ticket.countDocuments({"promo_code": code});
+    return result;
+}
+
+export {addTicket, getAllTickets, getActiveTickets, toggleActiveStatus, updateTicketItems, promoCodeCount}

@@ -31,3 +31,29 @@ Use MongoDB's connection string, replace `username` and `password` with the user
 The API is set up to automatically create a named collection in the database when you use it to "create" a ticket or item. 
 
 In the tickets_api folder, there is a api_tests.http which you can use with postman or the vscode extension "REST Client" to quickly make http requests to the API while it is running. Just make sure at that point the database is up and the API can talk to it with the correct "connect string"
+
+## Communication Contract 
+
+The microservice that this application provides is a response to a GET request so partner's code can query my application's database to see if a certain promo code has been used. 
+
+### To call this service:
+
+Send a GET request to the express API:
+
+```
+GET http://localhost:3000/api/tickets?code={codehere}
+```
+
+Replace `{codehere}` with the code that you are searching for. The response (subject to change depending on needs) will be a JSON object with the quantity of tickets specified, for example:
+
+`{"quantity": 1}`
+
+### Requests from this service
+
+This application will send a similar request to my partner's flask application to determine whether or not a promo code is valid:
+
+```
+GET http://localhost:5000/promo_code?code={codehere}
+```
+
+Replace `{codehere}` with the promo code of which we are determining the validity. 

@@ -50,7 +50,7 @@ function NewTicket() {
     const createTicket = async () => {
         const newTicket = {cust_name, ticket_items, active, validated_code};
 
-        console.log(`ticket_items: ${ticket_items}`);
+        
 
         setActive(true);
 
@@ -92,6 +92,7 @@ function NewTicket() {
                         setIsOpen={setIsOpen} 
                         items={items}
                         ticket_items={ticket_items}
+                        setTicketItems={setTicketItems}
                         />}
 
                     <label for="promo_code">Promo Code: </label>
@@ -109,7 +110,7 @@ function NewTicket() {
                         <p>{item.item_name}, {item.mods}, {item.price}</p>
                     )}
 
-                    <button>Save for Later</button>
+                    <button type="button">Save for Later</button>
                     
 
                     <button type="button" onClick = {() => createTicket()}>Send Ticket</button>

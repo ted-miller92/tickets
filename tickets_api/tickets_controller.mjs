@@ -27,8 +27,20 @@ app.post('/api/tickets', asyncHandler(async (req, res) => {
 
 // retrieve all tickets regardless of active status
 app.get('/api/tickets', asyncHandler (async (req, res) => {
-    const result = await tickets.getAllTickets();
-    res.send(result);
+    if (req.query.code){
+        // Microservice Handling
+        // If there is a code in the query URL, it will call a different 
+        // function in the API model to count the number of tickets that use a 
+        // specified promo code
+        const promoCode = req.query.code
+        console.log(`Searching for tickets that use promo code ${promoCode}`)
+        const result = await tickets.promoCodeCount(promoCode);
+        res.send({"quantity" : result});
+    } else {
+        // This gets all tickets
+        const result = await tickets.getAllTickets();
+        res.send(result);
+    }
 }));
 
 // retrieve only active tickets
@@ -70,11 +82,10 @@ app.get('/api/available_items', asyncHandler (async (req, res) => {
 }));
 
 // toggle sold out status for one item
-app.put('/items/toggle_sold_out/:_id', asyncHandler (async (req, res) => {
+app.put('/api/items/toggle_sold_out/:_id', asyncHandler (async (req, res) => {
     const result = await items.toggleSoldOutStatus(req.params._id);
     res.send(result);
 }));
-
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}...`);

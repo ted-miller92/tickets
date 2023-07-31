@@ -34,8 +34,6 @@ function Tickets( {setTicketToComplete} ) {
         loadTickets()
     }, []);
 
-    console.log(tickets);
-
     return (
         <div>
             <h1>Tickets</h1>
