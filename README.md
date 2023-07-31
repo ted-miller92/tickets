@@ -38,7 +38,7 @@ The microservice that this application provides is a response to a GET request s
 
 ### To call this service:
 
-Send a GET request to the express API:
+Send a GET request to the tickets API:
 
 ```
 GET http://localhost:3000/api/tickets?code={codehere}
@@ -53,7 +53,7 @@ Replace `{codehere}` with the code that you are searching for. The response (sub
 This application will send a similar request to my partner's flask application to determine whether or not a promo code is valid:
 
 ```
-GET http://localhost:5000/promo_code?code={codehere}
+GET http://localhost:5000/code?code={codehere}
 ```
 
 Replace `{codehere}` with the promo code of which we are determining the validity. 

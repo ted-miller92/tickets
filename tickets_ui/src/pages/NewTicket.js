@@ -18,7 +18,7 @@ function NewTicket() {
     const [promo_code, setPromoCode] = useState();
     const [active, setActive] = useState(true);
 
-    const validated_code = "";
+    let validated_code = "";
     
     const [isOpen, setIsOpen] = useState(false);
 
@@ -34,7 +34,7 @@ function NewTicket() {
 
 
     const promoCodeValidation = async() => {
-        const response = await fetch(`/promo_code/code?code=${promo_code}`, {
+        const response = await fetch(`/code/code?code=${promo_code}`, {
             method: "GET"
         })
         const result = await response.text()
@@ -42,6 +42,7 @@ function NewTicket() {
         if (result == "Valid") {
             console.log("Code will be applied")
             validated_code = promo_code
+            console.log(validated_code);
         } else {
             console.log(result);    
         }

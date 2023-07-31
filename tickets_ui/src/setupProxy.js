@@ -3,12 +3,12 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 module.exports = function(app) {
 
     app.use(
-        '/promo_code',
+        '/code',
         createProxyMiddleware({
             target: 'http://localhost:5000',
             changeOrigin: true,
             pathRewrite: {
-                '^/promo_code' : '/'
+                '^/code' : '/'
             }
         })
     );
