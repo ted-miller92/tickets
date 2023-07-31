@@ -4,11 +4,11 @@ import './css/TicketItems.css';
 
 function TicketItems( {ticket}) {
     
-    const items = ticket.items;
+    const ticket_items = ticket.ticket_items;
 
     return (
         <ol>
-            {items.map((item, i) => <ItemOnTicket item={item} key={i} />)}
+            {ticket_items.map((item, i) => <ItemOnTicket item={item} key={i} />)}
         </ol>
     );
 }

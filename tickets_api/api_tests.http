@@ -1,20 +1,22 @@
-POST http://localhost:3000/tickets HTTP/1.1
+### Request 1: invalid ticket (must have items)
+POST http://localhost:3000/api/tickets HTTP/1.1
 content-type: application/json
 
 {
     "cust_name": "Ted",
-    "date" : "2002-12-09",
-    "items" : "[]"
+    "ticket_items" : [],
+    "active": "true",
+    "promo_code": "FCI9F566KQ"
 }
 
 ### Request 2 create a ticket
 
-POST http://localhost:3000/tickets HTTP/1.1
+POST http://localhost:3000/api/tickets HTTP/1.1
 content-type: application/json
 
 {
     "cust_name": "Ted",
-    "items" : [
+    "ticket_items" : [
         {
             "item_name" : "Burger",
             "price" : 21.99,
@@ -26,64 +28,69 @@ content-type: application/json
             "mods" : "Add Pepperoni"
         }
     ],
-    "active" : "true"
+    "active" : "true",
+    "promo_code": "FCI9F566KQ"
 }
 
 ### Request 2.1: create many tickets
-POST http://localhost:3000/tickets HTTP/1.1
+POST http://localhost:3000/api/tickets HTTP/1.1
 content-type: application/json
 
 {
     "cust_name": "Lauren",
-    "items" : [
+    "ticket_items" : [
         {
             "item_name" : "Rosemary Chicken",
             "price" : 21.99,
             "mods" : "Extra Broccoli"
         }
     ],
-    "active" : "true"
+    "active" : "true",
+    "promo_code": "FCI9F566KQ"
 }
 
 ### 
-POST http://localhost:3000/tickets HTTP/1.1
+POST http://localhost:3000/api/tickets HTTP/1.1
 content-type: application/json
 
 {
     "cust_name" : "Geraldine",
-    "items" : [
+    "ticket_items" : [
         {
             "item_name" :"Seed and Worm Plate",
             "price" : 2.99,
             "mods" : ""
         }
     ],
-    "active": "true"
+    "active": "true",
+    "promo_code": ""
+
 }
 
 ### 
-POST http://localhost:3000/tickets HTTP/1.1
+POST http://localhost:3000/api/tickets HTTP/1.1
 content-type: application/json
 
 {
     "cust_name" : "Rosie",
-    "items" : [
+    "ticket_items" : [
         {
             "item_name" :"Kibbles",
             "price" : 4.99,
             "mods" : "Extra Chicken"
         }
     ],
-    "active": "true"
+    "active": "true",
+    "promo_code": ""
 }
 
 ### 
-POST http://localhost:3000/tickets HTTP/1.1
+POST http://localhost:3000/api/tickets HTTP/1.1
 content-type: application/json
 
 {
     "cust_name" : "Big Table",
-    "items" : [
+    "ticket_items" : [
         {
             "item_name" :"Kibbles",
             "price" : 4.99,
@@ -110,7 +117,8 @@ content-type: application/json
             "mods" : "Add Pepperoni"
         }
     ],
-    "active": "true"
+    "active": "true",
+    "promo_code" : ""
 }
 
 ###
@@ -119,7 +127,7 @@ content-type: application/json
 
 {
     "cust_name": "Code User",
-    "items" : [
+    "ticket_items" : [
         {
             "item_name" : "Rosemary Chicken",
             "price" : 21.99,
@@ -136,10 +144,8 @@ content-type: application/json
 }
 
 
-### Request 3
-
-
-POST http://localhost:3000/items HTTP/1.1
+### Request 3: Create an item
+POST http://localhost:3000/api/items HTTP/1.1
 content-type: application/json
 
 {
@@ -148,9 +154,8 @@ content-type: application/json
     "sold_out" : false
 }
 
-### Request 4
-
-POST http://localhost:3000/items HTTP/1.1
+### Request 4: Create another item
+POST http://localhost:3000/api/items HTTP/1.1
 content-type: application/json
 
 {
@@ -160,7 +165,7 @@ content-type: application/json
 }
 
 ### Request 4.1 (item is sold out)
-POST http://localhost:3000/items HTTP/1.1
+POST http://localhost:3000/api/items HTTP/1.1
 content-type: application/json
 
 {
@@ -170,22 +175,21 @@ content-type: application/json
 }
 
 ### Request 5: get all tickets regardless of active status
-GET http://localhost:3000/tickets HTTP/1.1
+GET http://localhost:3000/api/tickets HTTP/1.1
 content-type: application/json
 
 ### Request 6: get active tickets
 
-GET http://localhost:3000/active_tickets HTTP/1.1
+GET http://localhost:3000/api/active_tickets HTTP/1.1
 content-type: application/json
 
 ### Request 7: toggle active status
-PUT http://localhost:3000/tickets/toggle_active/64b0845a93533e625fa1ed69 HTTP/1.1
+PUT http://localhost:3000/api/tickets/toggle_active/64b0845a93533e625fa1ed69 HTTP/1.1
 content-type: application/json
 
-### Request 8: update items in a ticket
-PUT http://localhost:3000/tickets/64ae3ab2a10f0d6834e18731 HTTP/1.1
+### Request 8: THIS TYPE OF REQUEST IS NOT YET SUPPORTED update items in a ticket
+PUT http://localhost:3000/api/tickets/64ae3ab2a10f0d6834e18731 HTTP/1.1
 content-type: application/json
-
 {
     "items" : [
         "64aee83c8a79af4d1b4caf4e",
@@ -194,11 +198,11 @@ content-type: application/json
 }
 
 ### Request 9: get all items (regardless of sold out status)
-GET http://localhost:3000/items HTTP/1.1
+GET http://localhost:3000/api/items HTTP/1.1
 content-type: application/json
 
 ### Request 9.1: get all available items
-GET http://localhost:3000/available_items HTTP/1.1
+GET http://localhost:3000/api/available_items HTTP/1.1
 content-type: application/json
 
 ### Request 10: toggle sold out status given an item id

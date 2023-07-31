@@ -2,10 +2,8 @@ import 'dotenv/config';
 import * as tickets from './tickets_model.mjs';
 import * as items from './items_model.mjs';
 import express from 'express';
+import {body, check, validationResult} from 'express-validator';
 import asyncHandler from 'express-async-handler';
-import cors from 'cors';
-// import { body, check, validationResult } from 'express-validator';
-// import { isDateValid } from './validation/date_validation.mjs';
 
 const PORT = process.env.PORT;
 
@@ -14,22 +12,45 @@ const app = express();
 app.use(express.json());
 
 // create a new ticket
-app.post('/api/tickets', asyncHandler(async (req, res) => {
-    const current_date = new Date();
-    const date_string = current_date.toDateString()
-    const time_string = current_date.toLocaleTimeString();
+app.post('/api/tickets', [
+    // Validation
+    check('cust_name', 'Name (in string format) is required').notEmpty(),
+    check('ticket_items', 'Ticket Items required (as an array of objects)').notEmpty().isArray({min: 1}),
+    check('active', 'Active status required').notEmpty()
+    ], 
+    asyncHandler(async (req, res) => {
+        // store result of validation in validationResult object
+        const errors = validationResult(req);
 
-    const ticket = await tickets.addTicket(req.body.cust_name, 
-        date_string, time_string, req.body.items, req.body.promo_code, req.body.active);
+        if (!errors.isEmpty()){
+            // log errors to API console
+            console.log(errors);
 
-    res.status(201).send(ticket);
-}));
+            // send errors to client
+            res.status(400).json({errors: errors.array()});
+        } else {
+            // validation was okay
+            // Date and time are automatically generated
+            const current_date = new Date();
+            const date_string = current_date.toDateString()
+            const time_string = current_date.toLocaleTimeString();
+
+            // cust_name, ticket_items, promo_code and active
+            // are part of the request body
+            const ticket = await tickets.addTicket(req.body.cust_name, 
+                date_string, time_string, req.body.ticket_items, req.body.promo_code, req.body.active);
+            
+            // response is 201 (Created)
+            res.status(201).send(ticket);
+        }
+    }
+));
 
 // retrieve all tickets regardless of active status
 app.get('/api/tickets', asyncHandler (async (req, res) => {
     if (req.query.code){
         // Microservice Handling
-        // If there is a code in the query URL, it will call a different 
+        // If there is a promo code in the query URL, it will call a different 
         // function in the API model to count the number of tickets that use a 
         // specified promo code
         const promoCode = req.query.code

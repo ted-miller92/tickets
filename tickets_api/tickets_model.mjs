@@ -22,7 +22,7 @@ const ticketSchema = mongoose.Schema({
     cust_name : {type: String, required: true},
     date : {type: String, required: true},
     time: {type: String, required: true},
-    items : {type: Array, required: true},
+    ticket_items : {type: Array, required: true},
     promo_code: {type: String, required: false},
     active: {type: Boolean, required: true}
 });
@@ -31,12 +31,12 @@ const ticketSchema = mongoose.Schema({
 const Ticket = mongoose.model("Ticket", ticketSchema);
 
 // Create
-const addTicket = async (cust_name, date, time, items, promo_code, active) => {
+const addTicket = async (cust_name, date, time, ticket_items, promo_code, active) => {
 
     const ticket = new Ticket({cust_name: cust_name, 
         date: date,
         time: time,  
-        items: items,
+        ticket_items: ticket_items,
         promo_code: promo_code, 
         active: active});
 
@@ -78,7 +78,6 @@ const updateTicketItems = async(id, updates) => {
 // Micro service handling
 // count all tickets that have used a particular promo code
 const promoCodeCount = async(code) => {
-    console.log(code);
     const result = Ticket.countDocuments({"promo_code": code});
     return result;
 }
