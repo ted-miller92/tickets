@@ -60,4 +60,4 @@ Replace `{codehere}` with the promo code of which we are determining the validit
 
 ## Microservices UML
 
-![Microservices](Microservices.png)
+![Microservices](MicroservicesUML.png)
