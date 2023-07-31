@@ -57,3 +57,7 @@ GET http://localhost:5000/code?code={codehere}
 ```
 
 Replace `{codehere}` with the promo code of which we are determining the validity. 
+
+## Microservices UML
+
+![Microservices](Microservices.png)
