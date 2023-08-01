@@ -51,8 +51,6 @@ function NewTicket() {
     const createTicket = async () => {
         const newTicket = {cust_name, ticket_items, active, validated_code};
 
-        
-
         setActive(true);
 
         const response = await fetch('/api/tickets', {
