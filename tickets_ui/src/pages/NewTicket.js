@@ -1,27 +1,28 @@
 import React from "react";
 import { useState, useEffect } from 'react';
-
-import Navigation from '../components/Navigation';
-import ItemsGridView from "../components/ItemsGridView";
 import { useNavigate } from "react-router-dom";
 import AddItemToTicket from "../components/AddItemToTicket";
-import TicketItems from "../components/TicketItems";
 
 function NewTicket() {
 
     const navigate = useNavigate();
     
+    // user inputted promo code, not yet validated
+    const [inputPromoCode, setInputPromoCode] = useState('');
+
+    // items to display when choosing items for ticket
     const [items, setItems] = useState([]);
 
+    // fields to POST when creating new ticket
     const [cust_name, setCustName] = useState();
     const [ticket_items, setTicketItems] = useState([]);
-    const [promo_code, setPromoCode] = useState();
+    const [promo_code, setPromoCode] = useState('N/A');
     const [active, setActive] = useState(true);
 
-    let validated_code = "";
-    
+    // property for modal appearance when adding item to ticket
     const [isOpen, setIsOpen] = useState(false);
 
+    // load items to display when adding item to ticket
     const loadItems = async () => {
         const response = await fetch('/api/items');
         const data = await response.json();
@@ -33,23 +34,33 @@ function NewTicket() {
     }, []);
 
 
-    const promoCodeValidation = async() => {
-        const response = await fetch(`/code/code?code=${promo_code}`, {
+    // This function sends a GET request to the Code Tool's 
+    // verify.py microservice to determine validity of a promo code
+    const promoCodeValidation = async (inputPromoCode) => {
+        const response = await fetch(`/code/code?code=${inputPromoCode}`, {
             method: "GET"
-        })
-        const result = await response.text()
-
-        if (result == "Valid") {
-            console.log("Code will be applied")
-            validated_code = promo_code
-            console.log(validated_code);
+        }).then(response => {
+            if (!response.ok) {
+                alert("Unable to connect to Promo Code Tool");
+                throw new Error(response.statusText);
+            }
+            return response.text();
+        }).catch(error => {
+            console.error("Error : ", error);
+        });
+        
+        if (response == "Valid"){
+            alert("Valid promo code will be applied");
+            setPromoCode(inputPromoCode);
         } else {
-            console.log(result);    
+            alert("Promo code not valid");
         }
+        
     }
 
+    // This function sends a POST request to the tickets API,
     const createTicket = async () => {
-        const newTicket = {cust_name, ticket_items, active, validated_code};
+        const newTicket = {cust_name, ticket_items, active, promo_code};
 
         setActive(true);
 
@@ -62,13 +73,13 @@ function NewTicket() {
         });
 
         if (response.status === 201) {
-            console.log("added new ticket");
+            // if everything is valid, notify user and redirect home
+            alert("Added new ticket");
+            navigate("/");
         } else {
-            console.log(`error: ${response.status}`);
+            // alert user that fields are not filled out
+            alert("Fill out required fields");
         }
-        
-        // redirect home
-        navigate("/");
     }
     
     return (
@@ -99,10 +110,10 @@ function NewTicket() {
                         type="text"
                         name="promo_code"
                         id="promo_code"
-                        onChange={e => setPromoCode(e.target.value)}
+                        onChange={e => setInputPromoCode(e.target.value)}
                         />
 
-                    <button type="button" onClick = {() => promoCodeValidation(promo_code)}>Check Promo Code</button>
+                    <button type="button" onClick = {() => promoCodeValidation(inputPromoCode)}>Apply Promo Code</button>
                     
                     <p>Current Items:</p>
                     {ticket_items.map((item, i) => 
@@ -111,7 +122,6 @@ function NewTicket() {
 
                     <button type="button">Save for Later</button>
                     
-
                     <button type="button" onClick = {() => createTicket()}>Send Ticket</button>
                 </form>
             </div>

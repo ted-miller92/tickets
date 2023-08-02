@@ -23,7 +23,7 @@ const ticketSchema = mongoose.Schema({
     date : {type: String, required: true},
     time: {type: String, required: true},
     ticket_items : {type: Array, required: true},
-    promo_code: {type: String, required: false},
+    promo_code: {type: String, required: true},
     active: {type: Boolean, required: true}
 });
 

@@ -16,6 +16,7 @@ app.post('/api/tickets', [
     // Validation
     check('cust_name', 'Name (in string format) is required').notEmpty(),
     check('ticket_items', 'Ticket Items required (as an array of objects)').notEmpty().isArray({min: 1}),
+    check('promo_code', 'Promo code field required (even if empty)').notEmpty(),
     check('active', 'Active status required').notEmpty()
     ], 
     asyncHandler(async (req, res) => {
