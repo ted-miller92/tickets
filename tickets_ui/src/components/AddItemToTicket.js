@@ -11,7 +11,6 @@ function AddItemToTicket({setIsOpen, items, ticket_items, setTicketItems}) {
     
     function handleItemChange(item){
         // Multiple steps involved in setting the selected item
-
         // Make the dropdown reflect the currently selected item
         setSelectedItem(item);
 
@@ -26,7 +25,7 @@ function AddItemToTicket({setIsOpen, items, ticket_items, setTicketItems}) {
     return (
         <>
             <div className="modal">
-                <h1>ADD ITEM TO TICKET</h1>
+                <h1>Add Item to Ticket</h1>
                 <div className="formWrapper">
                     {/* the list of selectable items*/ }
                     
@@ -69,6 +68,7 @@ function AddItemToTicket({setIsOpen, items, ticket_items, setTicketItems}) {
                     ],
                     setIsOpen(false)
                     )}>Add To Ticket</button>
+                    
                     <button type="button" onClick={() => setIsOpen(false)}>Cancel</button>
                 </div>
             </div>

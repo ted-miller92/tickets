@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import AddItemToTicket from "../components/AddItemToTicket";
 
+import TicketItems from "../components/TicketItems";
+
 function NewTicket() {
 
     const navigate = useNavigate();
@@ -119,6 +121,8 @@ function NewTicket() {
                     {ticket_items.map((item, i) => 
                         <p>{item.item_name}, {item.mods}, {item.price}</p>
                     )}
+
+                    <TicketItems ticket_items={ticket_items}/>
 
                     <button type="button">Save for Later</button>
                     

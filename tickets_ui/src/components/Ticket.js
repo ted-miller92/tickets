@@ -5,6 +5,8 @@ import './css/Ticket.css';
 function Ticket ({ticket, onComplete}){
     const ticket_class = ticket.active == true ? "active" : "inactive";
 
+    const ticket_items = ticket.ticket_items;
+
     return (
         <div className={`ticket ${ticket_class}`}>
             <h3>{ticket.cust_name}</h3>
@@ -12,7 +14,7 @@ function Ticket ({ticket, onComplete}){
             <div>{ticket.date}</div>
             <hr />
             
-            <TicketItems ticket={ticket} />
+            <TicketItems ticket_items={ticket_items} />
 
             <button onClick= {() => onComplete(ticket._id)}>Mark Complete</button>
         </div>
