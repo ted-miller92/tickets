@@ -54,10 +54,9 @@ function NewTicket() {
         if (response == "Valid"){
             alert("Valid promo code will be applied");
             setPromoCode(inputPromoCode);
-        } else {
+        } else if (response === "Not Valid") {
             alert("Promo code not valid");
         }
-        
     }
 
     // This function sends a POST request to the tickets API,
