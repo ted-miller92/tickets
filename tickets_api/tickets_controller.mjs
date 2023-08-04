@@ -1,8 +1,12 @@
+/* tickets_controller.mjs
+Server controller file, handles API calls with express
+*/
+
 import 'dotenv/config';
 import * as tickets from './tickets_model.mjs';
 import * as items from './items_model.mjs';
 import express from 'express';
-import {body, check, validationResult} from 'express-validator';
+import {check, validationResult} from 'express-validator';
 import asyncHandler from 'express-async-handler';
 
 const PORT = process.env.PORT;
@@ -14,8 +18,8 @@ app.use(express.json());
 // create a new ticket
 app.post('/api/tickets', [
     // Validation
-    check('cust_name', 'Name (in string format) is required').notEmpty(),
-    check('ticket_items', 'Ticket Items required (as an array of objects)').notEmpty().isArray({min: 1}),
+    check('cust_name', 'Name (in string format) required').notEmpty(),
+    check('ticket_items', 'Ticket Items required').notEmpty().isArray({min: 1}),
     check('promo_code', 'Promo code field required (even if empty)').notEmpty(),
     check('active', 'Active status required').notEmpty()
     ], 
@@ -30,18 +34,17 @@ app.post('/api/tickets', [
             // send errors to client
             res.status(400).json({errors: errors.array()});
         } else {
-            // validation was okay
             // Date and time are automatically generated
             const current_date = new Date();
             const date_string = current_date.toDateString()
             const time_string = current_date.toLocaleTimeString();
 
-            // cust_name, ticket_items, promo_code and active
-            // are part of the request body
+            // request body includes all ticket parameters
             const ticket = await tickets.addTicket(req.body.cust_name, 
-                date_string, time_string, req.body.ticket_items, req.body.promo_code, req.body.active);
+                date_string, time_string, req.body.ticket_items, 
+                req.body.promo_code, req.body.active);
             
-            // response is 201 (Created)
+            // response 201 (Created)
             res.status(201).send(ticket);
         }
     }

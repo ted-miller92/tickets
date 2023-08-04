@@ -3,7 +3,6 @@ Main/Home page of the Tickets application. From here the user can navigate to:
 -tickets view
 -items view
 -new ticket
-
 */
 
 import React from 'react';
@@ -36,7 +35,6 @@ function HomePage() {
                     <h2>New Item</h2>
                     <p>Create a new menu item</p>
                 </Link>
-                
             </div>
         </>
     );

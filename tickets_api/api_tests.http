@@ -1,3 +1,5 @@
+### This is a file with a number of API test calls
+
 ### Request 1: invalid ticket (must have items)
 POST http://localhost:3000/api/tickets HTTP/1.1
 content-type: application/json
@@ -10,7 +12,6 @@ content-type: application/json
 }
 
 ### Request 2 create a ticket
-
 POST http://localhost:3000/api/tickets HTTP/1.1
 content-type: application/json
 

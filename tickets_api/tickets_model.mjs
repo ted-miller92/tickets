@@ -1,3 +1,8 @@
+/* tickets_model.mjs
+Model for tickets in the database
+Uses mongoose to connect to MongoDB
+*/
+
 import mongoose from 'mongoose';
 import 'dotenv/config';
 import { response } from 'express';
@@ -16,8 +21,6 @@ db.once("open", () => {
 });
 
 // Schema
-// The items field in the ticket will be an array of item ids, 
-// to be rendered in one of the views
 const ticketSchema = mongoose.Schema({
     cust_name : {type: String, required: true},
     date : {type: String, required: true},
@@ -32,14 +35,12 @@ const Ticket = mongoose.model("Ticket", ticketSchema);
 
 // Create
 const addTicket = async (cust_name, date, time, ticket_items, promo_code, active) => {
-
     const ticket = new Ticket({cust_name: cust_name, 
         date: date,
         time: time,  
         ticket_items: ticket_items,
         promo_code: promo_code, 
         active: active});
-
     return ticket.save();
 }
 

@@ -1,3 +1,8 @@
+/* items_model.mjs
+Model for menu items in the database
+Uses mongoose to connect to MongoDB
+*/
+
 import mongoose from 'mongoose';
 import 'dotenv/config';
 import { response } from 'express';
@@ -12,7 +17,7 @@ mongoose.connect(
 const db = mongoose.connection;
 // The open event is called when the database connection successfully opens
 db.once("open", () => {
-    console.log("Successfully connected to items using Mongoose!");
+    console.log("Successfully connected to items collection using Mongoose!");
 });
 
 // Schema
@@ -25,10 +30,9 @@ const itemSchema = mongoose.Schema({
 // Compile model from schema
 const Item = mongoose.model("Item", itemSchema);
 
-// Create
+// Create an item
 const addItem = async (item_name, price, sold_out) => {
     const item = new Item({item_name: item_name, price: price, sold_out: sold_out});
-
     return item.save();
 }
 
