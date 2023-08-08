@@ -1,9 +1,15 @@
+/*
+AddItemToTicket.js Component
+This is a modal component that is part of the NewTicket.js page,
+allows users to add items (with modifications) to the ticket
+*/
+
 import React from "react";
 import { useState, useEffect } from 'react';
 import "./css/AddItemToTicket.css"
 
 function AddItemToTicket({setIsOpen, items, ticket_items, setTicketItems}) {
-    
+    // set state variables
     const [selectedItem, setSelectedItem] = useState('');
     const [itemName, setItemName] = useState();
     const [price, setPrice] = useState();

@@ -1,3 +1,8 @@
+/*
+NewTicket.js
+This page has a form which allows users to create a new ticket
+*/
+
 import React from "react";
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
@@ -62,9 +67,9 @@ function NewTicket() {
     // This function sends a POST request to the tickets API,
     const createTicket = async () => {
         const newTicket = {cust_name, ticket_items, active, promo_code};
-
         setActive(true);
 
+        // make a POST request to the API
         const response = await fetch('/api/tickets', {
             method: "POST",
             body: JSON.stringify(newTicket),

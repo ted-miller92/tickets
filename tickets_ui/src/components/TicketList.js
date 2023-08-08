@@ -1,3 +1,8 @@
+/*
+TicketList.js Component
+Horizontal Scroll menu component for rendering the tickets
+*/
+
 import React from 'react';
 import Ticket from './Ticket';
 import './css/TicketList.css';

@@ -1,8 +1,8 @@
 /*
 Main/Home page of the Tickets application. From here the user can navigate to:
--tickets view
--items view
--new ticket
+- tickets view
+- items view
+- new ticket
 */
 
 import React from 'react';

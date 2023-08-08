@@ -1,3 +1,8 @@
+/*
+Navigation.js Component
+Simple navigation component
+*/
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './css/Navigation.css';
@@ -12,6 +17,6 @@ function Navigation() {
             <Link className="navLink" to="/new_item">New Item</Link>
         </nav>
     );
-  }
+}
 
-  export default Navigation;
+export default Navigation;

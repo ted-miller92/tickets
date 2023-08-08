@@ -1,14 +1,15 @@
+/*
+Tickets.js
+The main view that renders the active tickets
+*/
+
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import TicketList from '../components/TicketList';
-import Navigation from '../components/Navigation';
 import './css/Tickets.css';
 
 function Tickets( {setTicketToComplete} ) {
- 
-    const navigate = useNavigate();
-
     const [tickets, setTickets] = useState([]);
 
     const onComplete = async _id => {
@@ -28,7 +29,6 @@ function Tickets( {setTicketToComplete} ) {
         const data = await response.json();
         setTickets(data);
     }
-
 
     useEffect(() => {
         loadTickets()

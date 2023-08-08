@@ -1,13 +1,14 @@
+/*
+Items.js
+This page renders a view of all of the menu items
+*/
+
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
-import Navigation from '../components/Navigation';
 import ItemsGridView from '../components/ItemsGridView';
 
-
 function Items() {
-
     const [items, setItems] = useState([])
 
     const loadItems = async () => {

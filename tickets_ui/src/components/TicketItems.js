@@ -1,3 +1,8 @@
+/*
+TicketItems.js
+An ordered list of the items to be rendered as part of a Ticket.js component
+*/
+
 import React from 'react';
 import ItemOnTicket from './ItemOnTicket';
 import './css/TicketItems.css';
