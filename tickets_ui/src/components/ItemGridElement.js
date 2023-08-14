@@ -12,11 +12,18 @@ function ItemGridElement(item) {
     const sold_out_msg = item.item.sold_out? "Sold Out" : "";
 
     return (
-        <div className={`bigLink ${item_sold_out}`}>
-        
-            <h3>{item.item.item_name}</h3>
-            <h1 className="warning">{sold_out_msg}</h1>
-            <p>{item.item.price}</p>    
+        <div className={`itemGridElement ${item_sold_out}`}>
+            <div className="itemInfo">
+                <h2>{item.item.item_name}</h2>
+                <p>{item.item.price}</p>    
+                <p className="warningOverlay">{sold_out_msg}</p>
+            </div>
+            <div className="buttonGroup">
+                <button>Update</button>
+                <button>Delete</button>
+                <button>Mark Sold Out</button>
+            </div>
+            
         </div>
     )
 }

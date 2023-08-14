@@ -7,11 +7,9 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import AddItemToTicket from "../components/AddItemToTicket";
-
 import TicketItems from "../components/TicketItems";
 
 function NewTicket() {
-
     const navigate = useNavigate();
     
     // user inputted promo code, not yet validated

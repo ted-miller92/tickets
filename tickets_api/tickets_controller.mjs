@@ -91,7 +91,7 @@ app.put('/tickets/:_id', asyncHandler (async (req, res) => {
 // create a new item
 app.post('/api/items', asyncHandler( async (req, res) => {
     const item = await items.addItem(req.body.item_name, req.body.price, req.body.sold_out);
-    res.send(item);
+    res.status(201).send(item);
 }));
 
 // get all items
