@@ -7,13 +7,14 @@ import React from "react";
 import ItemGridElement from './ItemGridElement';
 import "./css/ItemsGridView.css";
 
-function ItemsGridView({items}) {
+function ItemsGridView({items, onSoldOut, onDelete}) {
     return (
         <>
             <div className="itemsGridView">
                 {items.map((item, i) => <ItemGridElement
                     item={item}
-                
+                    onSoldOut={onSoldOut}
+                    onDelete={onDelete}
                 />)}
             </div>
         </>

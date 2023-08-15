@@ -27,12 +27,3 @@
     right: 0;
     color: red;
 }
-
-.buttonGroup{
-    display:flex;
-    flex-wrap: wrap;
-}
-
-.buttonGroup button{
-    height: fit-content;
-}

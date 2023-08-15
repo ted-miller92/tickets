@@ -211,3 +211,8 @@ content-type: application/json
 ### Request 11: Test microservice
 GET http://localhost:3000/api/tickets?code=FCI9F566KQ HTTP/1.1
 content-type: application/json
+
+### Request 12: Test delete Item
+DELETE http://localhost:3000/api/items/64d93e0bfd6ea3a44d3a3154 HTTP/1.1
+content-type: application/json
+

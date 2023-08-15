@@ -28,7 +28,7 @@ function NewItem(){
 
         if (response.status === 201){
             alert("Added new item");
-            navigate("/");
+            navigate("/items");
         } else {
             alert("New item not added. Check required fields");
         }
@@ -56,7 +56,10 @@ function NewItem(){
                         onChange={e => setPrice(e.target.value)}
                         />
 
-                    <button type="button" onClick = {() => createItem()}>Create Item</button>
+                    <div className="buttonGroup">
+                        <button className="button" type="button" onClick = {() => createItem()}>Create Item</button>
+                    </div>
+                    
                 </form>
             </div>
         </>

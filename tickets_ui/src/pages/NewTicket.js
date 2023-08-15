@@ -38,6 +38,13 @@ function NewTicket() {
         loadItems();
     }, []);
 
+    function handleCancel() {
+        const cancel = window.confirm("Cancel? Ticket will not be saved");
+        if (cancel){
+            navigate("/");
+        }
+    }
+
 
     // This function sends a GET request to the Code Tool's 
     // verify.py microservice to determine validity of a promo code
@@ -100,7 +107,7 @@ function NewTicket() {
                         />
                     <br/>
 
-                    <button type="button" onClick={() => setIsOpen(true)}>Add Item to Ticket</button>
+                    <button className="button" type="button" onClick={() => setIsOpen(true)}>Add Item to Ticket</button>
 
                     {isOpen && <AddItemToTicket 
                         setIsOpen={setIsOpen} 
@@ -117,18 +124,16 @@ function NewTicket() {
                         onChange={e => setInputPromoCode(e.target.value)}
                         />
 
-                    <button type="button" onClick = {() => promoCodeValidation(inputPromoCode)}>Apply Promo Code</button>
+                    <button className="button" type="button" onClick = {() => promoCodeValidation(inputPromoCode)}>Apply Promo Code</button>
                     
                     <p>Current Items:</p>
-                    {ticket_items.map((item, i) => 
-                        <p>{item.item_name}, {item.mods}, {item.price}</p>
-                    )}
-
                     <TicketItems ticket_items={ticket_items}/>
 
-                    <button type="button">Save for Later</button>
-                    
-                    <button type="button" onClick = {() => createTicket()}>Send Ticket</button>
+                    <div className="buttonGroup">
+                        <button className="button" type="button">Save for Later</button>
+                        <button className="button" type="button" onClick = {() => handleCancel()}>Cancel</button>
+                        <button className="button green" type="button" onClick = {() => createTicket()}>Send Ticket</button>
+                    </div>
                 </form>
             </div>
         </>

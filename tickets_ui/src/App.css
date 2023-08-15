@@ -2,16 +2,33 @@ h1 {
 	padding-left: 15px;
 }
 
-button{
+.button{
 	display: block;
     color: white;
     background-color: #339;
 	border-style: none;
     font-size:20px;
     text-decoration: none;
-    padding: 4px;
-	margin:10px;
+    padding: 4px 10px;
+	/* margin:10px; */
     border-radius:5px;
+}
+
+.green {
+    background-color:#393;
+}
+.red {
+    background-color: #933;
+}
+
+.buttonGroup{
+    display:flex;
+    flex-wrap: wrap;
+    gap:4px;
+}
+
+.buttonGroup button{
+    height: fit-content;
 }
 
 .formWrapper{

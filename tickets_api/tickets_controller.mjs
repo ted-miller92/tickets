@@ -112,6 +112,17 @@ app.put('/api/items/toggle_sold_out/:_id', asyncHandler (async (req, res) => {
     res.send(result);
 }));
 
+// delete an item
+app.delete('/api/items/:_id', asyncHandler (async (req, res) => {
+    const result = await items.deleteItem(req.params._id);
+    
+    if (!result) {
+        res.status(404).json({Error: "Not found"});
+    } else {
+        res.status(204).send(result);
+    }
+}));
+
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}...`);
 });

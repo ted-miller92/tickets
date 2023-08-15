@@ -15,6 +15,7 @@ function HomePage() {
     return (
         <>
             <h1>Tickets Home</h1>
+
             <div className="bigLinks">
                 <Link className="bigLink" id="ticketsViewLink" to="/tickets">
                     <h2>Tickets</h2>

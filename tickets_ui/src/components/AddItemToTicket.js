@@ -9,12 +9,13 @@ import { useState, useEffect } from 'react';
 import "./css/AddItemToTicket.css"
 
 function AddItemToTicket({setIsOpen, items, ticket_items, setTicketItems}) {
+    
     // set state variables
-    const [selectedItem, setSelectedItem] = useState('');
+    const [selectedItem, setSelectedItem] = useState();
     const [itemName, setItemName] = useState();
     const [price, setPrice] = useState();
     const [mods, setMods] = useState();
-    
+
     function handleItemChange(item){
         // Multiple steps involved in setting the selected item
         // Make the dropdown reflect the currently selected item
@@ -28,6 +29,20 @@ function AddItemToTicket({setIsOpen, items, ticket_items, setTicketItems}) {
         setItemName(parsedItem.item_name);
     }
 
+    function addToTicketHandler (){
+        setTicketItems(
+            // spread operator to add items to ticket_items array
+            [                    
+            ...ticket_items,
+            {
+                item_name: itemName,
+                price: price,
+                mods: mods
+            }
+        ],
+        setIsOpen(false));
+    }
+
     return (
         <>
             <div className="modal">
@@ -36,19 +51,20 @@ function AddItemToTicket({setIsOpen, items, ticket_items, setTicketItems}) {
                     {/* the list of selectable items*/ }
                     
                     <label for="selectedItem">Choose an item: </label>
+                    
                     <select
                         name="selectedItem"
                         value={selectedItem}
                         onChange={e => handleItemChange(e.target.value)}>
 
-                        <option>Select an Item</option>
-                        {items.map((item, i) => 
+                    {
+                        items.map((item, i) => 
                         <option
                             key={i}
                             value={JSON.stringify(item)}>
                             {item.item_name}
                         </option>
-                        )}
+                    )}
 
                     </select>
                     
@@ -62,20 +78,11 @@ function AddItemToTicket({setIsOpen, items, ticket_items, setTicketItems}) {
 
                     </textarea>
 
-                    <button type="button" onClick={() => setTicketItems(
-                        // spread operator to add items to ticket_items array
-                        [                    
-                        ...ticket_items,
-                        {
-                            item_name: itemName,
-                            price: price,
-                            mods: mods
-                        }
-                    ],
-                    setIsOpen(false)
-                    )}>Add To Ticket</button>
+                    <div className="buttonGroup">
+                        <button className="button green" type="button" onClick={() => addToTicketHandler()}>Add To Ticket</button>
+                        <button className="button red" type="button" onClick={() => setIsOpen(false)}>Cancel</button>
+                    </div>
                     
-                    <button type="button" onClick={() => setIsOpen(false)}>Cancel</button>
                 </div>
             </div>
             <div className="modalOverlay"></div>

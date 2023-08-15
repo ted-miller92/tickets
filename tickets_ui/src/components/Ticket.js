@@ -20,7 +20,7 @@ function Ticket ({ticket, onComplete}){
             
             <TicketItems ticket_items={ticket_items} />
 
-            <button onClick= {() => onComplete(ticket._id)}>Mark Complete</button>
+            <button className="button" type="button" onClick= {() => onComplete(ticket._id)}>Mark Complete</button>
         </div>
     );
 }
