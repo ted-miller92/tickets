@@ -21,7 +21,6 @@ or that the element pops up over the rest of the screen
 
 .modalOverlay{
     z-index: 1000;
-
     position: fixed;
     top: 0;
     left: 0;

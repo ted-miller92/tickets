@@ -216,3 +216,7 @@ content-type: application/json
 DELETE http://localhost:3000/api/items/64d93e0bfd6ea3a44d3a3154 HTTP/1.1
 content-type: application/json
 
+### Request 13: Test delete ticket
+DELETE http://localhost:3000/api/tickets/64dc1a81ee1bb98783746408 HTTP/1.1
+content-type:application/json
+

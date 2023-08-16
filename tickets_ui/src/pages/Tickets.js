@@ -30,6 +30,22 @@ function Tickets() {
         }
     }   
 
+    const onDelete = async _id => {
+        // Confirm choice
+        const choice = window.confirm("Delete this ticket? There is no recovering the ticket after deletion");
+
+        if (choice) {
+            const response = await fetch(`/api/tickets/${_id}`, {method: 'DELETE'});
+            
+            if (response.status === 204){
+                loadTickets();
+            } else {
+                console.log(`Failed to delete item with id: ${_id}, 
+                    status code = ${response.status}`);
+            }
+        }
+    }
+
     const loadTickets = async () => {
         const response = await fetch('/api/tickets');
         const data = await response.json();
@@ -63,7 +79,8 @@ function Tickets() {
                 <TicketListVertical
                     tickets={tickets}
                     onComplete={onComplete}
-                ></TicketListVertical>
+                    onDelete={onDelete}>
+                </TicketListVertical>
             </div>
         </>
     );

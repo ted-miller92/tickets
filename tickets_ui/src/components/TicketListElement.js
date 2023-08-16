@@ -1,6 +1,6 @@
 import React from 'react';
 
-function TicketListElement ({ticket, onComplete}) {
+function TicketListElement ({ticket, onComplete, onDelete}) {
     let custName = ticket.cust_name;
     let date = ticket.date;
     let time = ticket.time;
@@ -18,7 +18,8 @@ function TicketListElement ({ticket, onComplete}) {
 
                 <div className="btn-group col-3">
                     <button className="btn btn-outline-primary">See Items</button>
-                    <button className="btn btn-primary" type="button" onClick= {() => onComplete(ticket._id)}>Toggle Active</button>
+                    <button className="btn btn-outline-primary" type="button" onClick= {() => onComplete(ticket._id)}>Toggle Active</button>
+                    <button className="btn btn-outline-danger" type="button" onClick= {() => onDelete(ticket._id)}>Delete</button>
                 </div>
             </div>
         </li>

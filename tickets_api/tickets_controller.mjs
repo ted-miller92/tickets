@@ -74,11 +74,18 @@ app.get('/api/active_tickets', asyncHandler (async (req, res) => {
     res.send(result);
 }));
 
+// retrieve ticket by id
+app.get('/api/tickets/:_id', asyncHandler (async (req, res) => {
+    const result = await tickets.getOneTicket(req.params._id);
+    res.send(result);
+}))
+
 // toggle active status for one ticket
 app.put('/api/tickets/toggle_active/:_id', asyncHandler (async (req, res) => {
     const result = await tickets.toggleActiveStatus(req.params._id);
     res.send(result);
 }));
+
 
 // update ticket items
 app.put('/tickets/:_id', asyncHandler (async (req, res) => {
@@ -122,6 +129,18 @@ app.delete('/api/items/:_id', asyncHandler (async (req, res) => {
         res.status(204).send(result);
     }
 }));
+
+// delete a ticket
+app.delete('/api/tickets/:_id', asyncHandler (async (req, res) => {
+    console.log("Deleting?");
+    const result = await tickets.deleteTicket(req.params._id);
+
+    if (!result) {
+        res.status(404).json({Error: "Not Found"});
+    } else {
+        res.status(204).send(result);
+    }
+}))
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}...`);

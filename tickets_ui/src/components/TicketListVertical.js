@@ -2,7 +2,7 @@ import React from 'react';
 import TicketListElement from './TicketListElement';
 import "./css/TicketListVertical.css";
 
-function TicketListVertical ({tickets, onComplete}) {
+function TicketListVertical ({tickets, onComplete, onDelete}) {
 
     // filter out inactive tickets
     let activeTickets = [...tickets].filter(function (ticket) {
@@ -19,6 +19,7 @@ function TicketListVertical ({tickets, onComplete}) {
                 {[...activeTickets].map((ticket, i) => <TicketListElement 
                     ticket={ticket}
                     onComplete={onComplete}
+                    onDelete={onDelete}
                     active="true"
                     key={i} />)}
             </ul>
@@ -26,6 +27,7 @@ function TicketListVertical ({tickets, onComplete}) {
                 {[...inactiveTickets].reverse().map((ticket, i) => <TicketListElement 
                     ticket={ticket}
                     onComplete={onComplete}
+                    onDelete={onDelete}
                     active="false"
                     key={i} />)}
             </ul>

@@ -56,6 +56,12 @@ const getActiveTickets = async() => {
     return query.exec();
 }
 
+// Retrieve one ticket by id
+const getOneTicket = async(id) => {
+    const query = Ticket.findById(id);
+    return query.exec();
+}
+
 // Toggle active status for a single ticket
 const toggleActiveStatus = async(id) => {
     const query = Ticket.findById(id);
@@ -76,6 +82,12 @@ const updateTicketItems = async(id, updates) => {
     return result;
 }
 
+// Delete a ticket
+const deleteTicket = async(id) => {
+    const result = Ticket.findByIdAndDelete(id);
+    return result;
+}
+
 // Micro service handling
 // count all tickets that have used a particular promo code
 const promoCodeCount = async(code) => {
@@ -83,4 +95,4 @@ const promoCodeCount = async(code) => {
     return result;
 }
 
-export {addTicket, getAllTickets, getActiveTickets, toggleActiveStatus, updateTicketItems, promoCodeCount}
+export {addTicket, getAllTickets, getActiveTickets, getOneTicket, toggleActiveStatus, updateTicketItems, promoCodeCount, deleteTicket}

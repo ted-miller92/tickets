@@ -86,7 +86,7 @@ function NewTicket() {
         if (response.status === 201) {
             // if everything is valid, notify user and redirect home
             alert("Added new ticket");
-            navigate("/");
+            navigate("/tickets");
         } else {
             // alert user that fields are not filled out
             alert("Fill out required fields");

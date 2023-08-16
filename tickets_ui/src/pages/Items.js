@@ -30,7 +30,7 @@ function Items() {
 
         if (choice){
             const response = await fetch(`/api/items/${_id}`, {method: 'DELETE'});
-
+            
             if (response.status === 204){
                 const newItems = items.filter(e => e._id !== _id);
                 setItems(newItems);
