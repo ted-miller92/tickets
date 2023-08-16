@@ -1,8 +1,6 @@
-.itemGridElement{
+/* .itemGridElement{
     width: 250px;
-    height: 250px;
-    
-    overflow:hidden;
+    height:fit-content;
     text-decoration: none;
     padding: 10px;
     margin: 30px;
@@ -10,9 +8,9 @@
     border: solid #EEE;
     box-shadow: 2px 2px 2px #555;
 }
-
+*/
 .soldOut{
-    color: #999;
+    background-color:rgb(95, 95, 95)!important;
 }
 .itemInfo{
     position:relative;
@@ -21,9 +19,5 @@
     position:absolute;
     width:100%;
     height:100%;
-    text-align: center;
-    font-size: xx-large;
-    top: 0;
-    right: 0;
     color: red;
 }

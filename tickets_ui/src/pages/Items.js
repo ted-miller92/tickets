@@ -5,17 +5,11 @@ This page renders a view of all of the menu items
 
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ItemsGridView from '../components/ItemsGridView';
 
 function Items() {
     const [items, setItems] = useState([])
-
-    // property for modal appearance when adding item to ticket
-    const [isOpen, setIsOpen] = useState(false);
-
-    // confirmation variable for confirming delete
-    const [confirmation, setConfirmation] = useState(false);
 
     // Function to toggle sold out status of an item
     const onSoldOut = async _id => {
@@ -58,16 +52,15 @@ function Items() {
     }, []);
 
     return (
-        <div>
+        <div className="container">
             <h1>Items</h1>
             <ItemsGridView 
                 items={items}
                 onSoldOut={onSoldOut}
                 onDelete={onDelete}
             />
-            <div className="links">
-                <Link className="link" id="newItemLink" to="/new_item">New Item</Link>
-            </div>
+            
+            <Link className="btn btn-primary btn-lg" id="newItemLink" to="/new_item">New Item</Link>
         </div>
     )
 }

@@ -6,30 +6,33 @@ allows users to add items (with modifications) to the ticket
 
 import React from "react";
 import { useState, useEffect } from 'react';
-import "./css/AddItemToTicket.css"
+import "./css/AddItemToTicket.css";
+import Select from "react-select";
 
 function AddItemToTicket({setIsOpen, items, ticket_items, setTicketItems}) {
-    
     // set state variables
     const [selectedItem, setSelectedItem] = useState();
-    const [itemName, setItemName] = useState();
-    const [price, setPrice] = useState();
     const [mods, setMods] = useState();
 
-    function handleItemChange(item){
-        // Multiple steps involved in setting the selected item
-        // Make the dropdown reflect the currently selected item
-        setSelectedItem(item);
+    // options for the select dropdown
+    const options = items.map(item => ({
+        value : JSON.stringify(item),
+        label : item.item_name
+    }));
 
-        // parse the item to access properties of it
-        const parsedItem = JSON.parse(item);
-
-        // set state variables to use when adding item to ticket
-        setPrice(parsedItem.price);
-        setItemName(parsedItem.item_name);
+    const handleChange = (selectedOption) => {
+        setSelectedItem(JSON.parse(selectedOption.value));
     }
 
     function addToTicketHandler (){
+        if (!selectedItem) {
+            alert("Please select an item");
+            return;
+        }
+
+        let itemName = selectedItem.item_name;
+        let price = selectedItem.price;
+
         setTicketItems(
             // spread operator to add items to ticket_items array
             [                    
@@ -43,46 +46,47 @@ function AddItemToTicket({setIsOpen, items, ticket_items, setTicketItems}) {
         setIsOpen(false));
     }
 
+    // useEffect(() => {
+    //     // setTicketItems();
+    // }, [selectedItem]);
+
     return (
         <>
-            <div className="modal">
+            <div className="customModal">
                 <h1>Add Item to Ticket</h1>
-                <div className="formWrapper">
+                <div className="form-control">
                     {/* the list of selectable items*/ }
                     
-                    <label for="selectedItem">Choose an item: </label>
-                    
-                    <select
-                        name="selectedItem"
-                        value={selectedItem}
-                        onChange={e => handleItemChange(e.target.value)}>
-
-                    {
-                        items.map((item, i) => 
-                        <option
-                            key={i}
-                            value={JSON.stringify(item)}>
-                            {item.item_name}
-                        </option>
-                    )}
-
-                    </select>
-                    
-                    <br />
-                    <label for="mods">Modifications</label>
-                    <br />
-                    <textarea name="mods"
-                        value={mods}
-                        onChange={e => setMods(e.target.value)}
-                    >
-
-                    </textarea>
-
-                    <div className="buttonGroup">
-                        <button className="button green" type="button" onClick={() => addToTicketHandler()}>Add To Ticket</button>
-                        <button className="button red" type="button" onClick={() => setIsOpen(false)}>Cancel</button>
+                    <div className="row m-2">
+                        <div className="col-auto">
+                        <label for="selectedItem">Choose an item: </label>
+                        
+                        </div>
+                        <Select
+                            options={options}
+                            onChange={handleChange}/>
                     </div>
                     
+                    <div className="row m-2">
+                        <div className="col-auto">
+                            <textarea
+                                className="form-text"
+                                name="mods"
+                                value={mods}
+                                rows="2"
+                                cols="50"
+                                placeholder="Modifications (optional)"
+                                onChange={e => setMods(e.target.value)}>
+                            </textarea>
+                        </div>          
+                    </div>
+                    
+                    <div className="row m-2">
+                        <div className="col-auto btn-group">
+                            <button className="btn btn-primary" type="button" onClick={() => addToTicketHandler()}>Add To Ticket</button>
+                            <button className="btn btn-outline-secondary" type="button" onClick={() => setIsOpen(false)}>Cancel</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="modalOverlay"></div>

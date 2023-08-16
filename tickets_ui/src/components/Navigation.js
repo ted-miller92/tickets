@@ -4,17 +4,17 @@ Simple navigation component
 */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './css/Navigation.css';
 
 function Navigation() {
     return (
-        <nav>
-            <Link className="navLink" to="/">Home</Link>
-            <Link className="navLink" to="/tickets">Tickets</Link>
-            <Link className="navLink" to="/new_ticket">New Ticket</Link>
-            <Link className="navLink" to="/items">Items</Link>
-            <Link className="navLink" to="/new_item">New Item</Link>
+        <nav className="nav nav-tabs nav-fill">
+            <NavLink className="nav-link" to="/">Home</NavLink>
+            <NavLink className="nav-link" to="/tickets">Tickets</NavLink>
+            <NavLink className="nav-link" to="/new_ticket">New Ticket</NavLink>
+            <NavLink className="nav-link" to="/items">Items</NavLink>
+            <NavLink className="nav-link" to="/new_item">New Item</NavLink>
         </nav>
     );
 }

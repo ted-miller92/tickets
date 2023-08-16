@@ -61,7 +61,7 @@ function NewTicket() {
             console.error("Error : ", error);
         });
         
-        if (response == "Valid"){
+        if (response === "Valid"){
             alert("Valid promo code will be applied");
             setPromoCode(inputPromoCode);
         } else if (response === "Not Valid") {
@@ -94,20 +94,35 @@ function NewTicket() {
     }
     
     return (
-        <>
+        <div className="container">
             <h1>New Ticket</h1>
-            <div className="formWrapper">
-                <form method="POST" action="/api/tickets">
-                    <label for="cust_name">Customer Name </label>
-                    <input 
-                        type="text" 
-                        name="cust_name" 
-                        id="cust_name" 
-                        onChange={e => setCustName(e.target.value)}
-                        />
-                    <br/>
+            <div>
+                <form className="form-control" method="POST" action="/api/tickets">
+                    <div className="row m-2">
+                        <div className="col-auto">
+                            <input
+                            className="form-control"
+                            type="text" 
+                            name="cust_name"
+                            placeholder="Customer Name"
+                            id="cust_name" 
+                            onChange={e => setCustName(e.target.value)}
+                            />
+                        </div>
+                    </div>
 
-                    <button className="button" type="button" onClick={() => setIsOpen(true)}>Add Item to Ticket</button>
+                    <div className="row m-2">
+                        <div className="col-auto">
+                            <p>Current Items:</p>
+                            <TicketItems ticket_items={ticket_items}/>
+                        </div>
+                    </div>
+
+                    <div className="row m-2">
+                        <div className="col-auto">
+                        <button className="btn btn-primary" type="button" onClick={() => setIsOpen(true)}>Add Item to Ticket</button>
+                        </div>
+                    </div>
 
                     {isOpen && <AddItemToTicket 
                         setIsOpen={setIsOpen} 
@@ -116,27 +131,33 @@ function NewTicket() {
                         setTicketItems={setTicketItems}
                         />}
 
-                    <label for="promo_code">Promo Code: </label>
-                    <input
-                        type="text"
-                        name="promo_code"
-                        id="promo_code"
-                        onChange={e => setInputPromoCode(e.target.value)}
-                        />
+                    <div className="row m-2">
+                        <div className="col-auto">
+                        <input
+                            className="form-control"
+                            type="text"
+                            name="promo_code"
+                            id="promo_code"
+                            placeholder="Promo Code (optional)"
+                            onChange={e => setInputPromoCode(e.target.value)}
+                            />
+                        </div>
+                        <div className="col-auto">
+                            <button className="btn btn-outline-primary" type="button" onClick = {() => promoCodeValidation(inputPromoCode)}>Apply Promo Code</button>
+                        </div>
+                    </div>
 
-                    <button className="button" type="button" onClick = {() => promoCodeValidation(inputPromoCode)}>Apply Promo Code</button>
                     
-                    <p>Current Items:</p>
-                    <TicketItems ticket_items={ticket_items}/>
-
-                    <div className="buttonGroup">
-                        <button className="button" type="button">Save for Later</button>
-                        <button className="button" type="button" onClick = {() => handleCancel()}>Cancel</button>
-                        <button className="button green" type="button" onClick = {() => createTicket()}>Send Ticket</button>
+                    <div className="row m-2">
+                        <div className="btn-group col-auto">
+                            <button className="btn btn-success btn-lg" type="button" onClick = {() => createTicket()}>Send Ticket</button>
+                            <button className="btn btn-outline-secondary btn-lg" type="button">Save for Later</button>
+                            <button className="btn btn-outline-secondary btn-lg" type="button" onClick = {() => handleCancel()}>Cancel</button>
+                        </div>
                     </div>
                 </form>
             </div>
-        </>
+        </div>
     )
 }
 

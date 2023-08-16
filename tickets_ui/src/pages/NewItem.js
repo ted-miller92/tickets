@@ -34,35 +34,53 @@ function NewItem(){
         }
     }
 
+    function handleCancel() {
+        const cancel = window.confirm("Cancel? Item will not be saved");
+        if (cancel){
+            navigate("/");
+        }
+    }
+
     return (
-        <>
+        <div className="container">
             <h1>New Item</h1>
-            <div className="formWrapper">
-                <form method="POST" action="api/items">
-                    <label for="item_name">Item Name: </label>
-                    <input 
-                        type="text" 
-                        name="item_name" 
-                        id="item_name" 
-                        onChange={e => setItemName(e.target.value)}
-                        />
-                    <br/>
-
-                    <label for="price">Price: $</label>
-                    <input
-                        type="number"
-                        name="price"
-                        id="price"
-                        onChange={e => setPrice(e.target.value)}
-                        />
-
-                    <div className="buttonGroup">
-                        <button className="button" type="button" onClick = {() => createItem()}>Create Item</button>
+            <div>
+                <form className="form-control" method="POST" action="api/items">
+                    <div className="row m-2">
+                        <div className="col-auto">
+                            <input
+                                className="form-control"
+                                type="text" 
+                                name="item_name" 
+                                id="item_name"
+                                placeholder="Item Name"
+                                onChange={e => setItemName(e.target.value)}
+                            />
+                        </div>
                     </div>
-                    
+
+                    <div className="row m-2">
+                        <div className="col-auto">
+                            <input
+                                className="form-control"
+                                type="number"
+                                name="price"
+                                id="price"
+                                placeholder="Price"
+                                onChange={e => setPrice(e.target.value)}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="row m-2">
+                        <div className="col-auto btn-group">
+                            <button className="btn btn-primary btn-lg" type="button" onClick = {() => createItem()}>Create Item</button>
+                            <button className="btn btn-outline-secondary btn-lg" type="button" onClick = {() => handleCancel()}>Cancel</button>
+                        </div>
+                    </div>
                 </form>
             </div>
-        </>
+        </div>
     )
 }
 

@@ -1,15 +1,12 @@
 .ticket{
-    margin: 10px;
-    padding:10px;
-    text-align:left;
     height: fit-content;
     min-width: 290px;
 }
-
+/* 
 ul{
     margin:0;
     padding: 0;
-}
+} */
 
 .active{
     background-color:white;
