@@ -59,8 +59,14 @@ function Items() {
                 onSoldOut={onSoldOut}
                 onDelete={onDelete}
             />
+
+            <div className="container">
+                <div className="row justify-content-md-center">
+                    <Link className="btn btn-primary btn-lg m-2 col-auto" id="new_item" to="/new_item">New Item</Link>    
+                </div>
+            </div>
             
-            <Link className="btn btn-primary btn-lg" id="newItemLink" to="/new_item">New Item</Link>
+            {/* <Link className="btn btn-primary btn-lg" id="newItemLink" to="/new_item">New Item</Link> */}
         </div>
     )
 }

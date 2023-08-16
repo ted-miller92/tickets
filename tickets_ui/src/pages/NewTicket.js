@@ -113,7 +113,6 @@ function NewTicket() {
 
                     <div className="row m-2">
                         <div className="col-auto">
-                            <p>Current Items:</p>
                             <TicketItems ticket_items={ticket_items}/>
                         </div>
                     </div>

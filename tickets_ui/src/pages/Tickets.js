@@ -6,7 +6,8 @@ The main view that renders the active tickets
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import TicketList from '../components/TicketList';
+import TicketListHorizontal from '../components/TicketListHorizontal';
+import TicketListVertical from "../components/TicketListVertical";
 import './css/Tickets.css';
 
 function Tickets() {
@@ -21,7 +22,7 @@ function Tickets() {
         
             if (response.status === 200) {
                 const newTickets = tickets.filter(e => e._id !== _id);
-                setTickets(newTickets);
+                loadTickets();
             } else {
                 console.log(`Failed to toggle active status for ticket with id= ${_id}, 
                 status code = ${response.status}`);
@@ -30,7 +31,7 @@ function Tickets() {
     }   
 
     const loadTickets = async () => {
-        const response = await fetch('/api/active_tickets');
+        const response = await fetch('/api/tickets');
         const data = await response.json();
         setTickets(data);
     }
@@ -42,16 +43,27 @@ function Tickets() {
     return (
         <>
             <div className="container">
-                <h1>Tickets</h1>
+                <h1>Active Tickets</h1>
             </div>
 
-            <TicketList
+            <TicketListHorizontal
                 tickets={tickets}
                 onComplete={onComplete}>
-            </TicketList>
+            </TicketListHorizontal>
 
             <div className="container">
-                <Link className="btn btn-primary btn-lg m-2" id="newTicketLink" to="/new_ticket">New Ticket</Link>    
+                <div className="row justify-content-md-center">
+                    <Link className="btn btn-primary btn-lg m-2 col-auto" id="newTicketLink" to="/new_ticket">New Ticket</Link>    
+                </div>
+            </div>
+
+            <div className="container">
+                <h2>Ticket List</h2>
+                <p>Active tickets are listed first</p>
+                <TicketListVertical
+                    tickets={tickets}
+                    onComplete={onComplete}
+                ></TicketListVertical>
             </div>
         </>
     );

@@ -2,11 +2,6 @@
     height: fit-content;
     min-width: 290px;
 }
-/* 
-ul{
-    margin:0;
-    padding: 0;
-} */
 
 .active{
     background-color:white;
