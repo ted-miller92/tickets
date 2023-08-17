@@ -45,11 +45,7 @@ function AddItemToTicket({setIsOpen, items, ticket_items, setTicketItems}) {
         ],
         setIsOpen(false));
     }
-
-    // useEffect(() => {
-    //     // setTicketItems();
-    // }, [selectedItem]);
-
+    
     return (
         <>
             <div className="customModal">

@@ -1,3 +1,8 @@
+/*
+Ticket element in a list view. Includes buttons for editing, toggling active
+status and deleting
+*/
+
 import React from 'react';
 
 function TicketListElement ({ticket, onComplete, onDelete}) {

@@ -14,8 +14,8 @@ function Tickets() {
     const [tickets, setTickets] = useState([]);
 
     const onComplete = async _id => {
-        // confirm their choice
-        const choice = window.confirm("Are you sure you want to complete this ticket?");
+        // Confirm choice
+        const choice = window.confirm("Are you sure you want to change active status?");
 
         if (choice){
             const response = await fetch(`/api/tickets/toggle_active/${_id}`, {method: 'PUT'});
@@ -28,7 +28,7 @@ function Tickets() {
                 status code = ${response.status}`);
             }
         }
-    }   
+    }
 
     const onDelete = async _id => {
         // Confirm choice

@@ -1,3 +1,9 @@
+/*
+Ticket list in vertical view. Separates active and inactive tickets,
+ordering the active tickets by oldest to newest, amd the inactive
+tickets by newest to oldest
+*/
+
 import React from 'react';
 import TicketListElement from './TicketListElement';
 import "./css/TicketListVertical.css";

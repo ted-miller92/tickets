@@ -22,21 +22,17 @@ function NewTicket() {
     const [cust_name, setCustName] = useState();
     const [ticket_items, setTicketItems] = useState([]);
     const [promo_code, setPromoCode] = useState('N/A');
-    const [active, setActive] = useState(true);
+    const [active, setActive] = useState();
 
     // property for modal appearance when adding item to ticket
     const [isOpen, setIsOpen] = useState(false);
 
-    // load items to display when adding item to ticket
+    // load only available items to display when adding item to ticket
     const loadItems = async () => {
-        const response = await fetch('/api/items');
+        const response = await fetch('/api/available_items');
         const data = await response.json();
         setItems(data);
     }
-
-    useEffect(() => {
-        loadItems();
-    }, []);
 
     function handleCancel() {
         const cancel = window.confirm("Cancel? Ticket will not be saved");
@@ -45,6 +41,9 @@ function NewTicket() {
         }
     }
 
+    useEffect(() => {
+        loadItems();
+    }, []);
 
     // This function sends a GET request to the Code Tool's 
     // verify.py microservice to determine validity of a promo code
@@ -70,9 +69,11 @@ function NewTicket() {
     }
 
     // This function sends a POST request to the tickets API,
-    const createTicket = async () => {
+    const createTicket = async (status) => {
         const newTicket = {cust_name, ticket_items, active, promo_code};
-        setActive(true);
+
+        // set active status
+        setActive(status);
 
         // make a POST request to the API
         const response = await fetch('/api/tickets', {
@@ -146,18 +147,17 @@ function NewTicket() {
                         </div>
                     </div>
 
-                    
                     <div className="row m-2">
                         <div className="btn-group col-auto">
-                            <button className="btn btn-success btn-lg" type="button" onClick = {() => createTicket()}>Send Ticket</button>
-                            <button className="btn btn-outline-secondary btn-lg" type="button">Save for Later</button>
+                            <button className="btn btn-success btn-lg" type="button" onClick = {() => createTicket(true)}>Send Ticket</button>
+                            <button className="btn btn-outline-secondary btn-lg" type="button" onClick = {() => createTicket(false)}>Save for Later</button>
                             <button className="btn btn-outline-secondary btn-lg" type="button" onClick = {() => handleCancel()}>Cancel</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-    )
+    );
 }
 
 export default NewTicket;
