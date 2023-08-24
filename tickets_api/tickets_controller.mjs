@@ -64,7 +64,9 @@ app.get('/api/tickets', asyncHandler (async (req, res) => {
     } else {
         // This gets all tickets
         const result = await tickets.getAllTickets();
-        res.send(result);
+        res.set({
+            "Access-Control-Allow-Origin": "*",
+        }).send(result);
     }
 }));
 

@@ -1,6 +1,4 @@
 # Tickets
-A project for OSU CS 361
-
 This is a react/node/mongodb application. It consists of a RESTful API and a react GUI.
 
 To deploy locally, clone the repository. Then start the API and the React App in two separate terminals. For example, in one terminal, enter the following commands:
@@ -31,6 +29,10 @@ Use MongoDB's connection string, replace `username` and `password` with the user
 The API is set up to automatically create a named collection in the database when you use it to "create" a ticket or item. 
 
 In the tickets_api folder, there is a api_tests.http which you can use with postman or the vscode extension "REST Client" to quickly make http requests to the API while it is running. Just make sure at that point the database is up and the API can talk to it with the correct "connect string"
+
+## Authorization/login
+
+## Deploying
 
 ## Communication Contract 
 

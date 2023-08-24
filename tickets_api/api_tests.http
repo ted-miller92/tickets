@@ -220,3 +220,6 @@ content-type: application/json
 DELETE http://localhost:3000/api/tickets/64dc1a81ee1bb98783746408 HTTP/1.1
 content-type:application/json
 
+### Request 14, test deployed api
+GET https://tickets-api-yyd8.onrender.com/api/tickets HTTP/1.1
+content-type:application/json
