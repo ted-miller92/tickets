@@ -68,7 +68,7 @@ app.get('/api/tickets', asyncHandler (async (req, res) => {
             "Access-Control-Allow-Credentials" : "true",
             "Access-Control-Allow-Origin": "*",
             "content-type" : "application/json"
-        }).send(result);
+        }).json(result);
     }
 }));
 
