@@ -8,12 +8,15 @@ import * as items from './items_model.mjs';
 import express from 'express';
 import {check, validationResult} from 'express-validator';
 import asyncHandler from 'express-async-handler';
+import cors from 'cors';
 
 const PORT = process.env.PORT;
 
 const app = express();
 
 app.use(express.json());
+
+app.use(cors());
 
 // create a new ticket
 app.post('/api/tickets', [
@@ -64,11 +67,7 @@ app.get('/api/tickets', asyncHandler (async (req, res) => {
     } else {
         // This gets all tickets
         const result = await tickets.getAllTickets();
-        res.set({
-            "Access-Control-Allow-Credentials" : "true",
-            "Access-Control-Allow-Origin": "*",
-            "content-type" : "application/json"
-        }).json(result);
+        res.json(result);
     }
 }));
 
